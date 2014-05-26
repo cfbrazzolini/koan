@@ -1,9 +1,9 @@
 #include "StageState.h"
 
 
-StageState::StageState() : bg("img/ocean.jpg"),tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet),music("audio/stageState.ogg") {
+StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet)*/,music("audio/stageState.ogg") {
 
-    Penguins* penguin = new Penguins(512,600);
+    /*Penguins* penguin = new Penguins(512,600);
     Alien::alienCount = 0;
 
     Camera::follow(penguin);
@@ -13,13 +13,16 @@ StageState::StageState() : bg("img/ocean.jpg"),tileSet(64,64,"img/tileset.png"),
     objectArray.emplace_back(new Alien(800,0,6));
     objectArray.emplace_back(new Alien(1000,700,4));
     objectArray.emplace_back(new Alien(0,0,6));
-    objectArray.emplace_back(penguin);
+    objectArray.emplace_back(penguin);*/
+
+    objectArray.emplace_back(new Player(100,100));
+
 }
 
 StageState::~StageState(){
     //Sprite::clear();
-    music.stop();
-    Music::clear();
+    //music.stop();
+    //Music::clear();
     objectArray.clear();
 }
 
@@ -37,24 +40,7 @@ void StageState::update(float dt){
     //float dt = Game::getDeltaTime();
 
     if(!hasRequestedDelete){
-        if(Penguins::player == nullptr){
-            Camera::unfollow();
-
-            hasRequestedDelete = true;
-
-            StateData data;
-            data.playerVictory = false;
-            Game::getInstance().push(new EndState(data)); 
-        }
-
-        if(Alien::alienCount == 0){
-
-            hasRequestedDelete = true;
-
-            StateData data;
-            data.playerVictory = true;
-            Game::getInstance().push(new EndState(data));
-        }
+        
 
         Camera::update(dt);
         
@@ -103,10 +89,10 @@ void StageState::render(){
 
     bg.render(0,0);
 
-    for(i=0;i<tileMap.getDepth();i++){
+   /* for(i=0;i<tileMap.getDepth();i++){
          tileMap.renderLayer(i,(i+1)*Camera::pos.getX(),(i+1)*Camera::pos.getY());
     }
-
+*/
     renderArray();
 }
 

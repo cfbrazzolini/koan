@@ -3,7 +3,7 @@
 
 #include <fstream>
 
-#include "Alien.h"
+
 #include "BlockTileSet.h"
 #include "Camera.h"
 #include "Colission.h"
@@ -11,7 +11,7 @@
 #include "EndState.h"
 #include "Game.h"
 #include "Music.h"
-#include "Penguins.h"
+#include "Player.h"
 #include "Sprite.h"
 #include "State.h"
 #include "TileMap.h"
@@ -27,8 +27,8 @@ public:
 private:
 	void input();
 	Sprite bg;
-	BlockTileSet tileSet;
-	TileMap tileMap;
+	//BlockTileSet tileSet;
+	//TileMap tileMap;
     Music music;
 };
 

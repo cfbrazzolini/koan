@@ -9,9 +9,9 @@ using namespace std;
 int main(int argc, char **argv){
 
 
-    Game game("IDJ - Caina 09/0108094", 1024, 600);
+    Game game("Koan", 800, 600);
 
-    game.push(new TileState());
+    game.push(new StageState());
 //    system("pwd");
     game.run();
     return 0;

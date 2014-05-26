@@ -86,7 +86,7 @@ void Game::run(){
             storedState = nullptr;
         }
 
-        while(stateStack.top()->requestedDelete()){
+        while(!stateStack.empty() && stateStack.top()->requestedDelete()){
             
             stateStack.pop();
 
@@ -94,16 +94,14 @@ void Game::run(){
                 stateStack.emplace(storedState);
                 storedState = nullptr;
             }
-
-            if(stateStack.empty()){
-                break;
-            }
         }
 
-        stateStack.top()->update(dt);
-        stateStack.top()->render();
-        SDL_RenderPresent(renderer);
-        SDL_Delay(33);
+        if(!stateStack.empty()){
+            stateStack.top()->update(dt);
+            stateStack.top()->render();
+            SDL_RenderPresent(renderer);
+            SDL_Delay(33);
+        }
     }
 
 }
