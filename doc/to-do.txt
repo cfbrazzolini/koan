@@ -1,0 +1,21 @@
+Criar classe pdrinha
+
+Criar lista de ptr para obj pedrinha
+
+Acertar movimentação do player para ir de casa em casa
+
+Criar o dado
+
+
+
+
+
+
+
+
+
+
+
+
+Criar imagem com pedrinha normal e realçada unida.
+
