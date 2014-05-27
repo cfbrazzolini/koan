@@ -2,20 +2,27 @@
 #define PLAYER_H
 
 #include <queue>
+#include <vector>
 
 #include "Camera.h"
 #include "CustomMath.h"
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Point.h"
+#include "Stone.h"
 #include "Sprite.h"
 
 #define PLAYER_SPEED 100
 
+typedef struct target{
+	Point pos;
+	int id;
+}TARGET_T;
+
 class Player : public GameObject
 {
 public:
-    Player(float,float);
+    Player(int,std::vector<Stone*>);
     void update(float);
     void render();
     bool isDead();
@@ -23,8 +30,10 @@ public:
     bool is(const std::string&);
 private:
 	Sprite sp;
-	std::queue<Point> taskQueue;
+	std::queue<TARGET_T> taskQueue;
+	std::vector<Stone*> stoneArray;
 	SDL_RendererFlip flip;
+	int currentId;
 };
 
 #endif // PLAYER_H
