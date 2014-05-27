@@ -1,8 +1,10 @@
 #ifndef STAGESTATE_H
 #define STAGESTATE_H
 
+#include <cstdio>
 #include <fstream>
-
+#include <memory>
+#include <vector>
 
 #include "BlockTileSet.h"
 #include "Camera.h"
@@ -14,6 +16,7 @@
 #include "Player.h"
 #include "Sprite.h"
 #include "State.h"
+#include "Stone.h"
 #include "TileMap.h"
 
 
@@ -30,6 +33,7 @@ private:
 	//BlockTileSet tileSet;
 	//TileMap tileMap;
     Music music;
+    std::vector<Stone*> stoneArray;
 };
 
 #endif // STAGESTATE_H

@@ -1,21 +1,34 @@
 #include "StageState.h"
 
 
-StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet)*/,music("audio/stageState.ogg") {
+StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet),music("audio/stageState.ogg") */{
+    
+    float x,y;
+    int id = 0;
+    std::string file_name;
+    std::ifstream file ("map/stoneMap.txt");
+    std::string str;
+    Stone* stone;
 
-    /*Penguins* penguin = new Penguins(512,600);
-    Alien::alienCount = 0;
+    
+    
+    if(file.is_open()){
+        while(getline(file,str,',')){
+            x = strtol(str.c_str(),nullptr,10);
+            getline(file,str,'\t');
+            y = strtol(str.c_str(),nullptr,10);
+            getline(file,str);
 
-    Camera::follow(penguin);
-    music.play(-1);
 
-    objectArray.emplace_back(new Alien(0,300,4));
-    objectArray.emplace_back(new Alien(800,0,6));
-    objectArray.emplace_back(new Alien(1000,700,4));
-    objectArray.emplace_back(new Alien(0,0,6));
-    objectArray.emplace_back(penguin);*/
+            stone = new Stone(x,y,"img/" + str + ".png",id++);
+            stoneArray.emplace_back(stone);
+            objectArray.emplace_back(stone);
+        }
+    }
 
-    objectArray.emplace_back(new Player(100,100));
+    objectArray.emplace_back(new Player(0,stoneArray));
+
+    file.close();
 
 }
 

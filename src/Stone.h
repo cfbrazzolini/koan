@@ -7,17 +7,19 @@
 #include "GameObject.h"
 #include "Sprite.h"
 
-class Stone
+class Stone : public GameObject
 {
 public:
-    Stone();
+    Stone(float,float,const std::string&,int);
     void update(float);
     void render();
     bool isDead();
     void notifyCollision(GameObject&);
-    bool is(const std::string&)
+    bool is(const std::string&);
+    int getId();
 private:
 	 Sprite sp;
+	 int id;
 };
 
 #endif // STONE_H

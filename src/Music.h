@@ -2,7 +2,7 @@
 #define MUSIC_H
 
 #include <cstdio>
-#include <SDL_Mixer.h>
+#include <SDL_mixer.h>
 #include <string>
 #include <unordered_map>
 
