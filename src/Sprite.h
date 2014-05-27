@@ -18,7 +18,7 @@ public:
     void open(const std::string&);
     void setClip(int, int, int, int);
     void update(float);
-    void render(int, int,float = 0);
+    void render(int, int,float = 0,const SDL_RendererFlip = SDL_FLIP_NONE);
     int getWidth();
     int getHeight();
     bool isOpen();

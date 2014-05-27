@@ -4,6 +4,7 @@
 #include <queue>
 
 #include "Camera.h"
+#include "CustomMath.h"
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Point.h"
@@ -23,6 +24,7 @@ public:
 private:
 	Sprite sp;
 	std::queue<Point> taskQueue;
+	SDL_RendererFlip flip;
 };
 
 #endif // PLAYER_H
