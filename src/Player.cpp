@@ -21,7 +21,8 @@ void Player::update(float dt){
 	float angle;
 	Point speed,pos;
 	Point click;
-	int i;
+	int i,id;
+    int distance;
 	int targetId = -1;
     bool direction,done=false;
 	TARGET_T target;
@@ -32,24 +33,26 @@ void Player::update(float dt){
 
         for(i=0;i<stoneArray.size();i++){
         	if(stoneArray[i]->box.hasPoint(click)){
-               /* click.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                click.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp.getHeight()/2);*/
-
                 targetId = stoneArray[i]->getId();
-        		  //taskQueue.push(click);
         		break;
         	}
         }
 
 
         if(targetId != -1){
-            direction = (targetId - currentId) <= stoneArray.size()/2;/* true = sentido horario;false = sentido anti-horario */
+            distance =  std::min(abs(targetId - currentId),(int)stoneArray.size() - abs(targetId - currentId));
+            
+            direction = (targetId == (currentId + distance) % stoneArray.size());/* true = sentido horario;false = sentido anti-horario */
 
         	if(direction){
-                for(i=currentId+1;i<=targetId;i++){
-        			target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                	target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp.getHeight()/2);
-                	target.id = i;
+                id = currentId;
+                for(i=0;i<distance;i++){
+                    
+                    id = (id + 1) % stoneArray.size();
+
+        			target.pos.setX(stoneArray[id]->box.getCenter().getX() + Camera::pos.getX());
+                	target.pos.setY(stoneArray[id]->box.getCenter().getY() + Camera::pos.getY() - sp.getHeight()/2);
+                	target.id = id;
                 	taskQueue.push(target);
         		}
         	}else{
