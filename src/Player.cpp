@@ -1,7 +1,5 @@
 #include "Player.h"
 
-#include <iostream>
-
 Player::Player(int id,std::vector<Stone*> stoneArray) : sp("img/mestre.png"),stoneArray(stoneArray),currentId(id)
 {
 	sp.setScale(0.02);
