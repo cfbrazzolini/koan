@@ -134,3 +134,6 @@ void Sprite::setFrameTime(float frameTime){
     this->frameTime = frameTime;
 }
 
+void Sprite::restartTimer(){
+    timeElapsed = 0;
+}

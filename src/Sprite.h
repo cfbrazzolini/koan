@@ -29,6 +29,7 @@ public:
     void setFrame(int);
     void setFrameCount(int);
     void setFrameTime(float);
+    void restartTimer();
 
 private:
     static std::unordered_map<std::string, SDL_Texture*> assetTable;

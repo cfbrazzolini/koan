@@ -14,7 +14,10 @@
 #include "Stone.h"
 #include "Sprite.h"
 
+#define PLAYER_FRAME_COUNT 8
+#define PLAYER_FRAME_TIME 0.1
 #define PLAYER_SPEED 100
+
 
 typedef struct target{
 	Point pos;
@@ -31,7 +34,12 @@ public:
     void notifyCollision(GameObject&);
     bool is(const std::string&);
 private:
-	Sprite sp;
+	Sprite* sp;
+	Sprite spFrente;
+	Sprite spDireita;
+	Sprite spEsquerda;
+	Sprite spCostas;
+
 	std::queue<TARGET_T> taskQueue;
 	std::vector<Stone*> stoneArray;
 	SDL_RendererFlip flip;

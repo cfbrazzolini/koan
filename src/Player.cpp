@@ -1,15 +1,21 @@
 #include "Player.h"
 
-Player::Player(int id,std::vector<Stone*> stoneArray) : sp("img/mestre.png"),stoneArray(stoneArray),currentId(id)
+Player::Player(int id,std::vector<Stone*> stoneArray) : spFrente("img/Movimento/frente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        spDireita("img/Movimento/direita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        spEsquerda("img/Movimento/esquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        spCostas("img/Movimento/costas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        stoneArray(stoneArray),
+                                                        currentId(id)
 {
-	sp.setScale(0.02);
+    sp = &spFrente;
+    sp->setScale(0.2);
 	rotation = 0;
 	flip = SDL_FLIP_NONE;
 
-	box.setX(stoneArray[id]->box.getCenter().getX() - sp.getWidth()/2);
-	box.setY(stoneArray[id]->box.getCenter().getY()- sp.getHeight());
-	box.setW(sp.getWidth());
-	box.setH(sp.getHeight());
+	box.setX(stoneArray[id]->box.getCenter().getX() - sp->getWidth()/2);
+	box.setY(stoneArray[id]->box.getCenter().getY()- sp->getHeight());
+    box.setW(sp->getWidth());
+    box.setH(sp->getHeight());
 }
 
 
@@ -49,7 +55,7 @@ void Player::update(float dt){
                     id = (id + 1) % stoneArray.size();
 
         			target.pos.setX(stoneArray[id]->box.getCenter().getX() + Camera::pos.getX());
-                	target.pos.setY(stoneArray[id]->box.getCenter().getY() + Camera::pos.getY() - sp.getHeight()/2);
+                	target.pos.setY(stoneArray[id]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
                 	target.id = id;
                 	taskQueue.push(target);
         		}
@@ -57,7 +63,7 @@ void Player::update(float dt){
                 if(currentId > targetId){
                     for(i=currentId-1;i>=targetId;i--){
                         target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                        target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp.getHeight()/2);
+                        target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
                         target.id = i;
                         taskQueue.push(target);
                     }
@@ -68,7 +74,7 @@ void Player::update(float dt){
                         	i += stoneArray.size();
                         }
                         target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                        target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp.getHeight()/2);
+                        target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
                         target.id = i;
                         taskQueue.push(target);
                         if(i == targetId){
@@ -90,27 +96,31 @@ void Player::update(float dt){
 		if(box.getCenter().computeDistance(target.pos) < 5){
 			taskQueue.pop();
 			currentId = target.id;
+
+            sp->restartTimer();
+            sp->setFrame(0);
+            sp->update(0);
+
+            if(!taskQueue.empty()){
+                angle = CustomMath::radToDeg(box.getCenter().computeInclination(taskQueue.front().pos));
+
+                if(angle<-45 && angle>=-135){
+                    sp = &spCostas;
+                }
+                else if(angle>=-45 && angle<45){
+                    sp = &spDireita;
+                }
+                else if(angle>=45 && angle<135){
+                    sp = &spFrente;
+                }
+                else if(angle>=135 || angle<-135){
+                    sp = &spEsquerda;
+                }
+                sp->setScale(0.2);
+            }
 		}else{
-
-			
-			//rotation = CustomMath::radToDeg(box.getCenter().computeInclination(pos));
-
-
-			if(flip == SDL_FLIP_NONE && (rotation > 90 || rotation < -90)){
-				flip = SDL_FLIP_VERTICAL;
-			}
-			else if(flip == SDL_FLIP_VERTICAL && (rotation < 90 && rotation > -90)){
-				flip = SDL_FLIP_NONE;
-			}
-
-
-
-			/*if(rotation > 90){
-				//rotation = rotation - 180;
-			}
-			else if(rotation < -90){
-				//rotation = rotation + 180;
-			}*/
+		  
+            sp->update(dt);
 
 			speed = target.pos.sub(box.getCenter());
             speed = speed.vectorNormalize().vectorXScalar(PLAYER_SPEED*dt);
@@ -123,7 +133,7 @@ void Player::update(float dt){
 }
 
 void Player::render(){
-	sp.render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
+	sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
 }
 
 bool Player::isDead(){

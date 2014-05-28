@@ -1,0 +1,128 @@
+
+Instrumentos
+
+Shamisen - violão japones de geisha
+
+Koto  - sítara ou harpa deitada
+
+Shakuhachi - flauta
+
+Taiko - tambor
+
+Ehru - 
+
+
+biwa - bandolin japones
+
+Nikata?
+
+Flauta assoprada (pifano)
+
+ehru
+
+
+Secundários
+
+"Cordas" de fundo
+
+Efeitos sonoros ocasionais de vento
+
+
+
+
+
+percussão tamborzão japones manêro
+
+
+referências
+
+https://www.youtube.com/watch?v=L24Nb4CJzV4
+https://www.youtube.com/watch?v=wQqQb40-dTE
+https://www.youtube.com/watch?v=yvgn-aGirqw
+https://www.youtube.com/watch?v=5BsMfd1ExpE&list=PL85xkyXc-6KOnXGsM0PMoah1802_ZBryf
+https://www.youtube.com/watch?v=IMxWA8Yuahc a segunda música termina aos 7:20
+
+
+Produção
+
+Tela Principal (inspirar os broder)
+
+Game Over
+
+Gameplay
+Música de 10 minutos?
+ou 3 músicas que tocam aleatóriamente.
+
+
+
+Main Title
+
+5 músicas de gameplay
+As músicas serão colocadas em uma matriz/lista que serão tocadas aleatóriamente 
+durante a partida.
+
+Fogo - Zhi C# 321 
+
+Madeira - Jiao F# 231
+
+Agua - Yu D# 521
+
+Terra - Gong A# 351
+
+Metal - Shang G# 431
+
+Vinheta Win, Defeat
+
+
+SFX
+
+Pedra Movimentando
+Quando ocorrer alguma movimentação de peça
+
+Pedras Quebrando
+Alguma peça é destruída.
+
+Ataque de Espada
+Um ataque de espada é executado
+
+Ataque de Flecha
+Um ataque de Arco e Flecha é executado
+
+Ataque de Magia
+Um ataque mágico é executado
+
+
+Resposta Certa ou Errada
+Efeito a ser tocado ao acertar ou errar uma questão
+
+
+
+
+
+SDD
+
+Músicas do jogo e onde elas ocorrem e como elas ocorrem
+(talvez até explicação de por que elas ocorrem)
+
+Sounds
+
+Sons explícitos (sound effects didáticos)
+
+Ambientes
+
+Emoções
+
+Pausas
+
+Sons da Interface
+
+
+
+
+
+
+
+
+
+
+
