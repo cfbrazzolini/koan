@@ -22,6 +22,7 @@ public:
 	bool is(const std::string&);
 
 	int getValue();
+	void setValue();
 
 private:
 	int value = 0;
