@@ -11,10 +11,9 @@ numero("font/Call me maybe.ttf",34,Text::TEXT_SOLID,std::to_string(value),SDL_Co
 	box.setW(sp.getWidth());
 	box.setH(sp.getHeight());
 
-
 	value = rand() % 7;
 
-	numero.setPos(Game::getInstance().getWindowWidth()/2,Game::getInstance().getWindowHeight()*5/6,true,true);
+	numero.setPos(box.getCenter().getX() - Camera::pos.getX(),box.getCenter().getY() - Camera::pos.getY(),true,true);
 
 }
 
@@ -24,6 +23,7 @@ int Dice::getValue(){
 
 void Dice::update(float dt){
 	value = rand() % 7;
+	numero.setText(std::to_string(value));
 }
  
 void Dice::render(){
