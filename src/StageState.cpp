@@ -27,7 +27,7 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
     }
 
     objectArray.emplace_back(new Player(0,stoneArray));
-
+    objectArray.emplace_back(new Dice(750,550));
     file.close();
 
 }

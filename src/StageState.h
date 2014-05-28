@@ -18,7 +18,7 @@
 #include "State.h"
 #include "Stone.h"
 #include "TileMap.h"
-
+#include "Dice.h"
 
 class StageState : public State
 {
