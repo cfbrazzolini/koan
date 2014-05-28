@@ -1,6 +1,11 @@
 #ifndef DICE_H
 #define DICE_H
 
+#include <string>
+#include <iostream>
+
+#include "Text.h"
+#include "Camera.h"
 #include "GameObject.h"
 #include "Sprite.h"
 #include <stdlib.h>
@@ -19,8 +24,9 @@ public:
 	int getValue();
 
 private:
-	int value;
+	int value = 0;
 	Sprite sp;
+	Text numero;
 };
 
 #endif // DICE_H
