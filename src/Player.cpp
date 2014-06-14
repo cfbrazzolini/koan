@@ -28,7 +28,7 @@ void Player::update(float dt){
 	int i,id;
     int distance;
 	int targetId = -1;
-    bool direction,done=false;
+    bool direction,done=false,alignment=false;
 	TARGET_T target;
 
     if (input.mousePress(SDL_BUTTON_RIGHT)){
@@ -93,9 +93,30 @@ void Player::update(float dt){
 	if(!taskQueue.empty()){
 		target = taskQueue.front();
 
+          if(!alignment){
+                 angle = CustomMath::radToDeg(box.getCenter().computeInclination(taskQueue.front().pos));
+
+                if(angle<-45 && angle>=-135){
+                    sp = &spCostas;
+                }
+                else if(angle>=-45 && angle<45){
+                    sp = &spDireita;
+                }
+                else if(angle>=45 && angle<135){
+                    sp = &spFrente;
+                }
+                else if(angle>=135 || angle<-135){
+                    sp = &spEsquerda;
+                }
+                sp->setScale(0.2);
+
+                alignment = true;
+            }
+
 		if(box.getCenter().computeDistance(target.pos) < 5){
 			taskQueue.pop();
-			currentId = target.id;
+            alignment = false;
+            currentId = target.id;
 
             sp->restartTimer();
             sp->setFrame(0);

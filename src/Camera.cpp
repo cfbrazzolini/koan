@@ -27,7 +27,7 @@ void Camera::update(float dt){
 		auto& input = InputManager::getInstance();
 		Point direction;
 
-		if(input.isKeyDown(UP_ARROW_KEY)){
+		/*if(input.isKeyDown(UP_ARROW_KEY)){
 			direction.setY(-1);
 		}
 		else if(input.isKeyDown(DOWN_ARROW_KEY)){
@@ -45,7 +45,7 @@ void Camera::update(float dt){
 			direction = direction.vectorNormalize().vectorXScalar(speed);
 			pos = pos.sum(direction.vectorXScalar(dt));
 		}
-
+*/
 	}
 }
 
