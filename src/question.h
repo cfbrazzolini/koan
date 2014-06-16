@@ -1,25 +1,25 @@
-#ifndef QUESTION_H
-#define QUESTION_H
+// #ifndef QUESTION_H
+// #define QUESTION_H
 
-#include <memory>
-#include <vector>
+// #include <memory>
+// #include <vector>
 
-#include "State.h"
+// #include "State.h"
 
-class question : public State
-{
-public:
-    question();
-    ~question();
-    void update(float);
-    void render();
-private:
-	void input();
-	Sprite bg;
-	//BlockTileSet tileSet;
-	//TileMap tileMap;
-    Music music;
-    std::vector<Stone*> stoneArray;
-};
+// class question : public State
+// {
+// public:
+//     question();
+//     ~question();
+//     void update(float);
+//     void render();
+// private:
+// 	void input();
+// 	Sprite bg;
+// 	//BlockTileSet tileSet;
+// 	//TileMap tileMap;
+//     Music music;
+//     std::vector<Stone*> stoneArray;
+// };
 
-#endif // QUESTION_H
+// #endif // QUESTION_H

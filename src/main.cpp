@@ -11,7 +11,7 @@ int main(int argc, char **argv){
 
     Game game("Koan", 800, 600);
 
-    game.push(new StageState());
+    game.push(new TileState());
 //    system("pwd");
     game.run();
     return 0;
