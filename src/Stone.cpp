@@ -14,7 +14,6 @@ Stone::Stone(float x,float y,const std::string& file,const std::string& fileDest
 	box.setY(y - sp->getHeight()/2);
 	box.setW(sp->getWidth());
 	box.setH(sp->getHeight());
-
 }
 
 

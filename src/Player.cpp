@@ -41,7 +41,6 @@ void Player::update(float dt){
 	TARGET_T target;
 
 
-
     if(StateData::turn == id){
 
         switch(playerState){
@@ -274,12 +273,14 @@ void Player::update(float dt){
 
                 break;
         }
+
     }
 }
 
 void Player::render(){
 	sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
     dice.render();
+
 }
 
 bool Player::isDead(){

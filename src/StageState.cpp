@@ -19,7 +19,6 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
             y = strtol(str.c_str(),nullptr,10);
             getline(file,str);
 
-
             stone = new Stone(x,y,"img/pedras/" + str + ".png","img/pedras/" + str + "destacada.png",id++);
             stoneArray.emplace_back(stone);
             objectArray.emplace_back(stone);
@@ -28,6 +27,7 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
 
     objectArray.emplace_back(new Player(0,0,stoneArray));
     objectArray.emplace_back(new Player(1,15,stoneArray));
+
    // objectArray.emplace_back(new Dice(750,550));
     file.close();
 

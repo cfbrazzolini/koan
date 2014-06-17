@@ -16,6 +16,7 @@ numero("font/Call me maybe.ttf",34,Text::TEXT_SOLID,std::to_string(value),SDL_Co
 	numero.setPos(box.getCenter().getX() - Camera::pos.getX(),box.getCenter().getY() - Camera::pos.getY(),true,true);
 	numero.setText(std::to_string(value));
 
+
 }
 
 int Dice::getValue(){
