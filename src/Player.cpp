@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Movimento/frente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        spDireita("img/Movimento/direita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        spEsquerda("img/Movimento/esquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        spCostas("img/Movimento/costas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Movimento/vermelhoFrente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        spDireita("img/Movimento/vermelhoDireita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        spEsquerda("img/Movimento/vermelhoEsquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+                                                        spCostas("img/Movimento/vermelhoCostas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         stoneArray(stoneArray),
                                                         currentPos(pos),
                                                         dice(750,550),
@@ -280,7 +280,6 @@ void Player::update(float dt){
 void Player::render(){
 	sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
     dice.render();
-
 }
 
 bool Player::isDead(){
