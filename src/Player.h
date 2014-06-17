@@ -11,6 +11,7 @@
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Point.h"
+#include "StateData.h"
 #include "Stone.h"
 #include "Sprite.h"
 
@@ -27,7 +28,7 @@ typedef struct target{
 class Player : public GameObject
 {
 public:
-    Player(int,std::vector<Stone*>);
+    Player(int,int,std::vector<Stone*>);
     void update(float);
     void render();
     bool isDead();
@@ -43,7 +44,8 @@ private:
 	std::queue<TARGET_T> taskQueue;
 	std::vector<Stone*> stoneArray;
 	SDL_RendererFlip flip;
-	int currentId;
+	int currentPos;
+	int id;
 };
 
 #endif // PLAYER_H

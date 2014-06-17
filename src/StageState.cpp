@@ -1,6 +1,5 @@
 #include "StageState.h"
 
-
 StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet)*/,music("audio/tituloPrincipal.mp3") {
     
     float x,y;
@@ -11,6 +10,7 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
     Stone* stone;
 
     music.play(1);
+    StateData::turn = 0;
     
     if(file.is_open()){
         while(getline(file,str,',')){
@@ -26,7 +26,8 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
         }
     }
 
-    objectArray.emplace_back(new Player(0,stoneArray));
+    objectArray.emplace_back(new Player(0,0,stoneArray));
+    objectArray.emplace_back(new Player(1,15,stoneArray));
     objectArray.emplace_back(new Dice(750,550));
     file.close();
 

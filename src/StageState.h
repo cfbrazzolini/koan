@@ -16,6 +16,7 @@
 #include "Player.h"
 #include "Sprite.h"
 #include "State.h"
+#include "StateData.h"
 #include "Stone.h"
 #include "TileMap.h"
 #include "Dice.h"
