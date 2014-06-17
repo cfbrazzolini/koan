@@ -4,7 +4,10 @@
 class StateData
 {
 public:
+
 	bool playerVictory;
+    static int turn;
+
 };
 
 #endif // STATEDATA_H
