@@ -47,6 +47,6 @@ void Stone::selecionar(){
         stoneState = DESTACADA;
 	}else{
 		sp = &spNormal;
-        stoneState == NORMAL;
+        stoneState = NORMAL;
 	}
 }
