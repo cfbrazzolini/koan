@@ -8,7 +8,6 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
                                                         spCostas("img/Movimento/vermelhoCostas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         stoneArray(stoneArray),
                                                         currentPos(pos),
-                                                        dice(750,550),
                                                         moved(false),
                                                         attacked(false),
                                                         jogouDado(false),
@@ -76,9 +75,9 @@ void Player::update(float dt){
                     /*< Inicio do movimento */
 
                     /*< Rola o dado */
-                    dice.setValue();
-                    dice.update(dt);
-                    movementsRemaining = dice.getValue();
+                    Dice::setValue();
+                    Dice::update(dt);
+                    movementsRemaining = Dice::getValue();
                     /* Rola o dado >*/
 
                     /*< Calcula casas alcancaveis e muda suas cores */
@@ -279,7 +278,7 @@ void Player::update(float dt){
 
 void Player::render(){
 	sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
-    dice.render();
+    Dice::render();
 }
 
 bool Player::isDead(){

@@ -1,6 +1,8 @@
 #include "StageState.h"
 
-StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet)*/,music("audio/tituloPrincipal.mp3") {
+StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet)*/,
+                            music("audio/tituloPrincipal.mp3"),
+                            dice(750,550){
     
     float x,y;
     int id = 0;

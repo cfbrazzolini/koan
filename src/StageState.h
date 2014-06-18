@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "Colission.h"
 #include "CustomMath.h"
+#include "Dice.h"
 #include "EndState.h"
 #include "Game.h"
 #include "Music.h"
@@ -19,7 +20,6 @@
 #include "StateData.h"
 #include "Stone.h"
 #include "TileMap.h"
-#include "Dice.h"
 
 class StageState : public State
 {
@@ -35,6 +35,8 @@ private:
 	//TileMap tileMap;
     Music music;
     std::vector<Stone*> stoneArray;
+
+    Dice dice;
 };
 
 #endif // STAGESTATE_H

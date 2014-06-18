@@ -47,7 +47,6 @@ private:
 	std::vector<int> validStones;
 	std::vector<Stone*> stoneArray;
 	SDL_RendererFlip flip;
-	Dice dice;
 	PlayerState playerState;
 	bool moved;
 	bool attacked;
