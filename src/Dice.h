@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "Sprite.h"
 #include <stdlib.h>
+#include "StateData.h"
 
 
 class Dice : public GameObject
