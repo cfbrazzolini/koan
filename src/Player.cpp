@@ -8,10 +8,7 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
                                                         spCostas("img/Movimento/vermelhoCostas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         stoneArray(stoneArray),
                                                         currentPos(pos),
-<<<<<<< HEAD
-=======
                                                         //dice(750,550),
->>>>>>> c57bd773b69066a29430242fc42211b36ee84b42
                                                         moved(false),
                                                         attacked(false),
                                                         jogouDado(false),
@@ -21,11 +18,11 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
 {
     sp = &spFrente;
     sp->setScale(0.2);
-	rotation = 0;
-	flip = SDL_FLIP_NONE;
+    rotation = 0;
+    flip = SDL_FLIP_NONE;
 
-	box.setX(stoneArray[pos]->box.getCenter().getX() - sp->getWidth()/2);
-	box.setY(stoneArray[pos]->box.getCenter().getY()- sp->getHeight());
+    box.setX(stoneArray[pos]->box.getCenter().getX() - sp->getWidth()/2);
+    box.setY(stoneArray[pos]->box.getCenter().getY()- sp->getHeight());
     box.setW(sp->getWidth());
     box.setH(sp->getHeight());
 }
@@ -33,16 +30,16 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
 
 void Player::update(float dt){
 
-	auto& input = InputManager::getInstance();
-	auto& dice = Dice::getInstance();
+    auto& input = InputManager::getInstance();
+    auto& dice = Dice::getInstance();
     float angle;
-	Point speed,pos;
-	Point click;
+    Point speed,pos;
+    Point click;
     int i,j,posId;
     int distance;
-	int targetId = -1;
+    int targetId = -1;
     bool direction,done=false,alignment=false;
-	TARGET_T target;
+    TARGET_T target;
 
 
     if(StateData::turn == id){
@@ -80,15 +77,9 @@ void Player::update(float dt){
                     /*< Inicio do movimento */
 
                     /*< Rola o dado */
-<<<<<<< HEAD
-                    Dice::setValue();
-                    Dice::update(dt);
-                    movementsRemaining = Dice::getValue();
-=======
                     dice.setValue();
                     //dice.update(dt);
                     movementsRemaining = dice.getValue();
->>>>>>> c57bd773b69066a29430242fc42211b36ee84b42
                     /* Rola o dado >*/
 
                     /*< Calcula casas alcancaveis e muda suas cores */
@@ -288,16 +279,12 @@ void Player::update(float dt){
 }
 
 void Player::render(){
-	sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
-<<<<<<< HEAD
-    Dice::render();
-=======
+    sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
     //Dice::getInstance().render();
->>>>>>> c57bd773b69066a29430242fc42211b36ee84b42
 }
 
 bool Player::isDead(){
-	return false;
+    return false;
 }
 
 void Player::notifyCollision(GameObject& other){
@@ -305,6 +292,6 @@ void Player::notifyCollision(GameObject& other){
 }
 
 bool Player::is(const std::string& type){
-	return type == "Player";
+    return type == "Player";
 
 }

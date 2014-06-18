@@ -36,7 +36,7 @@ private:
     Music music;
     std::vector<Stone*> stoneArray;
 
-    Dice dice;
+    // Dice dice;
 };
 
 #endif // STAGESTATE_H
