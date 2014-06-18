@@ -1,5 +1,7 @@
 #include "State.h"
 
+#include <iostream>
+
 State::State() : hasRequestedDelete(false),hasRequestedQuit(false)
 {
 }
@@ -9,7 +11,15 @@ State::~State(){
 }
 
 void State::addObject(GameObject* ptr){
+
+    if(ptr->is("Hud")){
+        std::cout << "hud" << std::endl;
+    }
     objectArray.emplace_back(ptr);
+
+    if(ptr->is("Hud")){
+        std::cout << "llala" << std::endl;
+    }
 }
 
 bool State::requestedDelete(){
@@ -25,7 +35,7 @@ void State::updateArray(float dt){
 	int i;
 	
 	for(i=0;i<objectArray.size();i++){
-    	objectArray[i]->update(dt);
+        objectArray[i]->update(dt);
     }
 }
 

@@ -32,7 +32,7 @@ void Dice::update(float dt){
  
 void Dice::render(){
 	// printf("%d\n", StateData::turn);
-	printf("%d %d\n", StateData::turn, this->value);
+	//printf("%d %d\n", StateData::turn, this->value);
 	sp.render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY());
 	numero.render();
  }

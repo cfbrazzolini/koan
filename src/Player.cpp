@@ -14,6 +14,7 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
                                                         jogouDado(false),
                                                         playerState(STANDBY),
                                                         movementsRemaining(0),
+                                                        hp(PLAYER_HP),
                                                         id(id)
 {
     sp = &spFrente;
@@ -25,6 +26,7 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
     box.setY(stoneArray[pos]->box.getCenter().getY()- sp->getHeight());
     box.setW(sp->getWidth());
     box.setH(sp->getHeight());
+
 }
 
 
@@ -274,8 +276,18 @@ void Player::update(float dt){
 
                 break;
         }
-
+    }else{
+        if(input.mousePress(SDL_BUTTON_LEFT)){
+            click.setX((float)input.getMouseX() + Camera::pos.getX());
+            click.setY((float)input.getMouseY() + Camera::pos.getY());
+            if(box.hasPoint(click)){
+                //std::cout << "Hp restante: " << hp << std::endl;
+                 hp--;
+            }
+        }
     }
+
+    StateData::playerHp[id] = hp;
 }
 
 void Player::render(){
@@ -284,7 +296,7 @@ void Player::render(){
 }
 
 bool Player::isDead(){
-    return false;
+    return hp <= 0;
 }
 
 void Player::notifyCollision(GameObject& other){
@@ -294,4 +306,12 @@ void Player::notifyCollision(GameObject& other){
 bool Player::is(const std::string& type){
     return type == "Player";
 
+}
+
+int Player::getId(){
+    return id;
+}
+
+int Player::getHp(){
+    return hp;
 }

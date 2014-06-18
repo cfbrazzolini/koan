@@ -11,13 +11,16 @@
 #include "Dice.h"
 #include "InputManager.h"
 #include "GameObject.h"
+#include "Hud.h"
 #include "Point.h"
+#include "Sprite.h"
 #include "StateData.h"
 #include "Stone.h"
-#include "Sprite.h"
+
 
 #define PLAYER_FRAME_COUNT 8
 #define PLAYER_FRAME_TIME 0.1
+#define PLAYER_HP 20
 #define PLAYER_SPEED 100
 
 
@@ -35,6 +38,8 @@ public:
     bool isDead();
     void notifyCollision(GameObject&);
     bool is(const std::string&);
+    int getId();
+    int getHp();
 private:
 	enum PlayerState {STANDBY,MOVING,ATTACKING};
 	Sprite* sp;
@@ -47,11 +52,11 @@ private:
 	std::vector<int> validStones;
 	std::vector<Stone*> stoneArray;
 	SDL_RendererFlip flip;
-	//Dice dice;
 	PlayerState playerState;
 	bool moved;
 	bool attacked;
 	bool jogouDado;
+	int hp;
 	int currentPos;
 	int id;
 	int movementsRemaining;

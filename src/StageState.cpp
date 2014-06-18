@@ -27,7 +27,12 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
     }
 
     objectArray.emplace_back(new Player(0,0,stoneArray));
+    StateData::playerHp.emplace_back(20);
+    objectArray.emplace_back(new Hud(0,0,0));
+    
     objectArray.emplace_back(new Player(1,15,stoneArray));
+    StateData::playerHp.emplace_back(20);
+    objectArray.emplace_back(new Hud(0,0,1));
 
     objectArray.emplace_back(&dice);
     file.close();
@@ -58,6 +63,16 @@ void StageState::update(float dt){
         
 
         Camera::update(dt);
+
+        for(i=0;i<StateData::playerHp.size();i++){
+            if(StateData::playerHp[i] <= 0){
+                StateData data;
+                data.playerVictory = false;
+                Game::getInstance().push(new EndState(data)); 
+            }
+        }
+
+
         
         if(input.shouldQuit()){
             hasRequestedQuit = true;
