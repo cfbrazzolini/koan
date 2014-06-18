@@ -48,3 +48,9 @@ void Dice::notifyCollision(GameObject& other){
 bool Dice::is(const std::string& type){
 	return type == "Dice";
 }
+
+Dice& Dice::getInstance(){
+	static Dice instance(750,550);
+
+	return instance;
+}
