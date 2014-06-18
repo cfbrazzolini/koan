@@ -8,6 +8,7 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
     std::ifstream file ("map/stoneMap.txt");
     std::string str;
     Stone* stone;
+    Dice& dice = Dice::getInstance();
 
     music.play(-1);
     StateData::turn = 0;
@@ -28,7 +29,7 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
     objectArray.emplace_back(new Player(0,0,stoneArray));
     objectArray.emplace_back(new Player(1,15,stoneArray));
 
-   // objectArray.emplace_back(new Dice(750,550));
+    objectArray.emplace_back(&dice);
     file.close();
 
 }

@@ -1,16 +1,15 @@
 #ifndef DICE_H
 #define DICE_H
 
-#include <string>
 #include <iostream>
+#include <stdlib.h>
+#include <string>
 
-#include "Text.h"
 #include "Camera.h"
 #include "GameObject.h"
 #include "Sprite.h"
-#include <stdlib.h>
 #include "StateData.h"
-
+#include "Text.h"
 
 class Dice : public GameObject
 {
@@ -24,6 +23,7 @@ public:
 
 	int getValue();
 	void setValue();
+	static Dice& getInstance();
 
 private:
 	int value = 0;

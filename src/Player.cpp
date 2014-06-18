@@ -8,7 +8,7 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
                                                         spCostas("img/Movimento/vermelhoCostas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         stoneArray(stoneArray),
                                                         currentPos(pos),
-                                                        dice(750,550),
+                                                        //dice(750,550),
                                                         moved(false),
                                                         attacked(false),
                                                         jogouDado(false),
@@ -31,7 +31,8 @@ Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Mo
 void Player::update(float dt){
 
 	auto& input = InputManager::getInstance();
-	float angle;
+	auto& dice = Dice::getInstance();
+    float angle;
 	Point speed,pos;
 	Point click;
     int i,j,posId;
@@ -77,7 +78,7 @@ void Player::update(float dt){
 
                     /*< Rola o dado */
                     dice.setValue();
-                    dice.update(dt);
+                    //dice.update(dt);
                     movementsRemaining = dice.getValue();
                     /* Rola o dado >*/
 
@@ -279,7 +280,7 @@ void Player::update(float dt){
 
 void Player::render(){
 	sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
-    dice.render();
+    //Dice::getInstance().render();
 }
 
 bool Player::isDead(){
