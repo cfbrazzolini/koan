@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Player::Player(int id,int pos,std::vector<Stone*> stoneArray) : spFrente("img/Movimento/vermelhoFrente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray) : spFrente("img/Movimento/vermelhoFrente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         spDireita("img/Movimento/vermelhoDireita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         spEsquerda("img/Movimento/vermelhoEsquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
                                                         spCostas("img/Movimento/vermelhoCostas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
@@ -42,6 +42,9 @@ void Player::update(float dt){
     int targetId = -1;
     bool direction,done=false,alignment=false;
     TARGET_T target;
+    std::vector<Path*> paths;
+    std::string pathVector,str;
+    std::size_t found,last_found;
 
 
     if(StateData::turn == id){
@@ -81,13 +84,25 @@ void Player::update(float dt){
                     /*< Rola o dado */
                     dice.setValue();
                     //dice.update(dt);
-                    movementsRemaining = dice.getValue();
                     /* Rola o dado >*/
 
                     /*< Calcula casas alcancaveis e muda suas cores */
 
+
+                    paths = stoneArray[currentPos]->getPaths(dice.getValue());
+
+                    validStones.clear();
                     validStones.emplace_back(currentPos);
+                    for(i=0;i<paths.size();i++){
+                         validStones.emplace_back(paths[i]->getTarget());
+                    }
+
+
+
+                    /*
                     validStones.emplace_back((currentPos + movementsRemaining) % stoneArray.size());
+
+
 
 
                     posId = (currentPos - movementsRemaining);
@@ -98,9 +113,13 @@ void Player::update(float dt){
 
                     validStones.emplace_back(posId);
 
+                    */
+
                     for(i=0;i<validStones.size();i++){
                         stoneArray[validStones[i]]->selecionar();
                     }
+
+
                     
                     /* Calcula casas alcancaveis e muda suas cores >*/
 
@@ -125,9 +144,45 @@ void Player::update(float dt){
 
 
                     if(targetId != -1){
-                        distance =  std::min(abs(targetId - currentPos),(int)stoneArray.size() - abs(targetId - currentPos));
+
+                        paths = stoneArray[currentPos]->getPaths(dice.getValue());
+
+                         for(i=0;i<paths.size();i++){
+                             if(paths[i]->getTarget() == targetId){
+                                pathVector = paths[i]->getPath();
+                                break;
+                             }
+                        }
+
+
+                        last_found = 0;
+                        while((last_found != std::string::npos) &&  (found = pathVector.find("-",last_found+1))){
+                            posId = abs(strtol(pathVector.substr(last_found,found-last_found).c_str(),nullptr,10));
+                            
+                            last_found = found;
+
+                            target.pos.setX(stoneArray[posId]->box.getCenter().getX() + Camera::pos.getX());
+                            target.pos.setY(stoneArray[posId]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
+                            target.id = posId;
+                            taskQueue.push(target);
+                        }
+
+
+                     /*   while(getline(pathVector,str,'-')){
+                            posId = strtol(str.c_str(),nullptr,10);
+
+                            target.pos.setX(stoneArray[posId]->box.getCenter().getX() + Camera::pos.getX());
+                            target.pos.setY(stoneArray[posId]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
+                            target.id = posId;
+                            taskQueue.push(target);
+                        }*/
+
+
+
+
+                        /*distance =  std::min(abs(targetId - currentPos),(int)stoneArray.size() - abs(targetId - currentPos));
                         
-                        direction = (targetId == (currentPos + distance) % stoneArray.size());/* true = sentido horario;false = sentido anti-horario */
+                        direction = (targetId == (currentPos + distance) % stoneArray.size());/* true = sentido horario;false = sentido anti-horario *
 
                         if(direction){
                             posId = currentPos;
@@ -165,7 +220,7 @@ void Player::update(float dt){
                                     }
                                 }
                             }
-                        }
+                        }*/
 
                     }
                 }

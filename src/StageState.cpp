@@ -1,19 +1,19 @@
 #include "StageState.h"
 
-StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png"),tileMap("map/tileMap.txt",&tileSet)*/,music("audio/tituloPrincipal.mp3") {
+StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3") {
     
     float x,y;
     int id = 0;
     std::string file_name;
     std::ifstream file ("map/stoneMap.txt");
     std::string str;
-    Stone* stone;
     Dice& dice = Dice::getInstance();
 
-    music.play(-1);
+    //music.play(-1);
     StateData::turn = 0;
+
     
-    if(file.is_open()){
+   /* if(file.is_open()){
         while(getline(file,str,',')){
             x = strtol(str.c_str(),nullptr,10);
             getline(file,str,'\t');
@@ -24,9 +24,14 @@ StageState::StageState() : bg("img/mapa.png")/*,tileSet(64,64,"img/tileset.png")
             stoneArray.emplace_back(stone);
             objectArray.emplace_back(stone);
         }
+    }*/
+
+    for(auto it=map.nodeMap.begin();it != map.nodeMap.end();++it){
+            stoneArray.emplace(it->first,it->second);
+            objectArray.emplace_back(it->second);
     }
 
-    objectArray.emplace_back(new Player(0,0,stoneArray));
+    objectArray.emplace_back(new Player(0,1,stoneArray));
     StateData::playerHp.emplace_back(20);
     objectArray.emplace_back(new Hud(0,0,0));
     
@@ -118,17 +123,5 @@ void StageState::render(){
 
 
     bg.render(0,0);
-
-   /* for(i=0;i<tileMap.getDepth();i++){
-         tileMap.renderLayer(i,(i+1)*Camera::pos.getX(),(i+1)*Camera::pos.getY());
-    }
-*/
     renderArray();
 }
-
-/*
-void StageState::addObject(float mouseX,float mouseY){
-    
-
-}
-*/

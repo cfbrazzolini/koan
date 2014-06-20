@@ -2,8 +2,10 @@
 #define PLAYER_H
 
 #include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <queue>
+#include <unordered_map>
 #include <vector>
 
 #include "Camera.h"
@@ -32,7 +34,7 @@ typedef struct target{
 class Player : public GameObject
 {
 public:
-    Player(int,int,std::vector<Stone*>);
+    Player(int,int,std::unordered_map<int,Stone*>);
     void update(float);
     void render();
     bool isDead();
@@ -50,7 +52,7 @@ private:
 
 	std::queue<TARGET_T> taskQueue;
 	std::vector<int> validStones;
-	std::vector<Stone*> stoneArray;
+	std::unordered_map<int,Stone*> stoneArray;
 	SDL_RendererFlip flip;
 	PlayerState playerState;
 	bool moved;

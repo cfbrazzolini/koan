@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <fstream>
 #include <memory>
+#include <unordered_map>
 #include <vector>
 
 #include "BlockTileSet.h"
@@ -13,6 +14,7 @@
 #include "Dice.h"
 #include "EndState.h"
 #include "Game.h"
+#include "Map.h"
 #include "Music.h"
 #include "Player.h"
 #include "Sprite.h"
@@ -31,10 +33,9 @@ public:
 private:
 	void input();
 	Sprite bg;
-	//BlockTileSet tileSet;
-	//TileMap tileMap;
+    Map map;
     Music music;
-    std::vector<Stone*> stoneArray;
+    std::unordered_map<int,Stone*> stoneArray;
 
     // Dice dice;
 };
