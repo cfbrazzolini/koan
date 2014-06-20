@@ -6,8 +6,8 @@ Hud::Hud(float x, float y, int id) : 	sp("img/hp_itens/barradomongevermelho.PNG"
 													hpSp("img/hp_itens/barras/20vida.PNG"),
                                                 	id(id)
 {
-	sp.setScale(0.1);
-	hpSp.setScale(0.1);
+	sp.setScale(0.2);
+	hpSp.setScale(0.2);
 
 	if(id == 0){
 		box.setX(0);
@@ -32,7 +32,7 @@ void Hud::update(float dt){
 		lastHp = StateData::playerHp[id];
 		//std::cout << "img/hp_itens/barras/" << lastHp << "vida.PNG" << std::endl;
         hpSp.open("img/hp_itens/barras/" + std::to_string(lastHp) + "vida.PNG");
-		hpSp.setScale(0.1);
+		hpSp.setScale(0.2);
 	}
 
 }
