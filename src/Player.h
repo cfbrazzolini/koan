@@ -4,20 +4,26 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
+#include <memory>
 #include <queue>
 #include <unordered_map>
 #include <vector>
 
+#include "Bow.h"
 #include "Camera.h"
 #include "CustomMath.h"
 #include "Dice.h"
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Hud.h"
+#include "Item.h"
 #include "Point.h"
+#include "Shuriken.h"
 #include "Sprite.h"
 #include "StateData.h"
 #include "Stone.h"
+#include "Sword.h"
+#include "Trap.h"
 
 
 #define PLAYER_FRAME_COUNT 8
@@ -34,7 +40,7 @@ typedef struct target{
 class Player : public GameObject
 {
 public:
-    Player(int,int,std::unordered_map<int,Stone*>);
+    Player(int,int,std::unordered_map<int,Stone*>,const std::string&);
     void update(float);
     void render();
     bool isDead();
@@ -42,6 +48,8 @@ public:
     bool is(const std::string&);
     int getId();
     int getHp();
+    std::vector<std::unique_ptr<Item>>* getItens();
+    std::string& getColor();
 private:
 	enum PlayerState {STANDBY,MOVING,ATTACKING};
 	Sprite* sp;
@@ -53,6 +61,7 @@ private:
 	std::queue<TARGET_T> taskQueue;
 	std::vector<int> validStones;
 	std::unordered_map<int,Stone*> stoneArray;
+	std::vector<std::unique_ptr<Item>> itemArray;
 	SDL_RendererFlip flip;
 	PlayerState playerState;
 	bool moved;
@@ -62,6 +71,7 @@ private:
 	int currentPos;
 	int id;
 	int movementsRemaining;
+    std::string color;
 };
 
 #endif // PLAYER_H

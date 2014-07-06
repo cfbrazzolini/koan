@@ -4,7 +4,8 @@ Stone::Stone(float x,float y,int id,std::vector<int>* _links,const std::string& 
 																								spDestacada("img/pedras/"+fileName+"destacada.PNG"),
                                                                                         		sp(&spNormal),
                                                                                         		stoneState(NORMAL),
-																								id(id)
+																								id(id),
+                                                                                                trap(nullptr)
 {
 
 	rotation = 0;
@@ -119,4 +120,18 @@ std::vector<Path*> Stone::getPaths(int distance){
     }
 
     return validPaths;
+}
+
+
+void Stone::setTrap(Trap* trap){
+    this->trap = trap;
+}
+
+void Stone::activateTrap(){
+    trap->activate();
+    trap = nullptr;
+}
+
+bool Stone::isTrapped(){
+    return trap != nullptr;
 }

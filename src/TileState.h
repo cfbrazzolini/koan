@@ -1,6 +1,7 @@
 #ifndef TILESTATE_H
 #define TILESTATE_H
 
+#include "Rect.h"
 #include "Camera.h"
 #include "InputManager.h"
 #include "Sprite.h"
@@ -23,8 +24,12 @@ private:
 	void input();
 
 	Sprite bg;
+	Sprite iniciarBg;
+	Sprite historicoBg;
 	Timer timer;
-	Text text;
+	Rect iniciarBox;
+	Rect historicoBox;
+	/*Text text;*/
 	bool show;
 };
 

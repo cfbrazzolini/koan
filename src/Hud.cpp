@@ -2,10 +2,13 @@
 
 #include <iostream>
 
-Hud::Hud(float x, float y, int id) : 	sp("img/hp_itens/barradomongevermelho.PNG"),
+Hud::Hud(float x, float y, int id,GameObject* player) :
 													hpSp("img/hp_itens/barras/20vida.PNG"),
-                                                	id(id)
+                                                	id(id),
+                                                	player(player)
+
 {
+    sp.open("img/hp_itens/barradomonge" + ((Player*)player)->getColor() + ".PNG");
 	sp.setScale(0.2);
 	hpSp.setScale(0.2);
 
@@ -22,11 +25,15 @@ Hud::Hud(float x, float y, int id) : 	sp("img/hp_itens/barradomongevermelho.PNG"
 
     lastHp = StateData::playerHp[id];
     rotation = 0;
+    itemArray = ((Player*)player)->getItens();
 }
 
 void Hud::update(float dt){
 
     //std::cout << "last hp:" << lastHp << "player hp" << StateData::playerHp[id] << std::endl;
+    for(auto i = 0;i < itemArray->size();i++){
+        itemArray->at(i)->setPos(box.getCenter().getX() - 22 +60*i,box.getCenter().getY() + 5);
+    }
 
 	if(lastHp != StateData::playerHp[id]){
 		lastHp = StateData::playerHp[id];
@@ -35,11 +42,20 @@ void Hud::update(float dt){
 		hpSp.setScale(0.2);
 	}
 
+    for(auto i = 0;i < itemArray->size();i++){
+        itemArray->at(i)->update(dt);
+	}
+
 }
 
 void Hud::render(){
 	sp.render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY());
     hpSp.render(box.getX() - Camera::pos.getX() + hpSp.getWidth()/3 ,box.getY() - Camera::pos.getY() + hpSp.getHeight()- 2);
+
+	for(auto i = 0;i<itemArray->size();i++){
+         itemArray->at(i)->render();
+	}
+
 }
 
 bool Hud::isDead(){

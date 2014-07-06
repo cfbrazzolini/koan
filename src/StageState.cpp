@@ -8,6 +8,7 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     std::ifstream file ("map/stoneMap.txt");
     std::string str;
     Dice& dice = Dice::getInstance();
+    Player* player;
 
     //music.play(-1);
     StateData::turn = 0;
@@ -31,16 +32,27 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
             objectArray.emplace_back(it->second);
     }
 
-    objectArray.emplace_back(new Player(0,1,stoneArray));
+    player = new Player(0,1,stoneArray,"vermelho");
+
+    objectArray.emplace_back(player);
     StateData::playerHp.emplace_back(20);
-    objectArray.emplace_back(new Hud(0,0,0));
+    objectArray.emplace_back(new Hud(0,0,0,player));
+
+    player = new Player(1,15,stoneArray,"laranja");
     
-    objectArray.emplace_back(new Player(1,15,stoneArray));
+    objectArray.emplace_back(player);
     StateData::playerHp.emplace_back(20);
-    objectArray.emplace_back(new Hud(0,0,1));
+    objectArray.emplace_back(new Hud(0,0,1,player));
 
     objectArray.emplace_back(&dice);
     file.close();
+
+    StateData::itemArray.emplace_back("Sword");
+    StateData::itemArray.emplace_back("Shuriken");
+    StateData::itemArray.emplace_back("Trap");
+    StateData::itemArray.emplace_back("Bow");
+
+
 
 }
 

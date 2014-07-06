@@ -1,21 +1,21 @@
 #include "Player.h"
 
-#include <iostream>
-
-Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray) : spFrente("img/Movimento/vermelhoFrente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        spDireita("img/Movimento/vermelhoDireita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        spEsquerda("img/Movimento/vermelhoEsquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        spCostas("img/Movimento/vermelhoCostas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
-                                                        stoneArray(stoneArray),
-                                                        currentPos(pos),
-                                                        //dice(750,550),
-                                                        moved(false),
-                                                        attacked(false),
-                                                        jogouDado(false),
-                                                        playerState(STANDBY),
-                                                        movementsRemaining(0),
-                                                        hp(PLAYER_HP),
-                                                        id(id)
+Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const std::string& color) : 
+    spFrente("img/movimento/"+ color +"Frente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+    spDireita("img/movimento/"+ color +"Direita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+    spEsquerda("img/movimento/"+ color +"Esquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+    spCostas("img/movimento/"+ color +"Costas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
+    stoneArray(stoneArray),
+    currentPos(pos),
+    //dice(750,550),
+    moved(false),
+    attacked(false),
+    jogouDado(false),
+    playerState(STANDBY),
+    movementsRemaining(0),
+    hp(PLAYER_HP),
+    id(id),
+    color(color)
 {
     sp = &spFrente;
     sp->setScale(0.2);
@@ -26,6 +26,12 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray) : spFre
     box.setY(stoneArray[pos]->box.getCenter().getY()- sp->getHeight());
     box.setW(sp->getWidth());
     box.setH(sp->getHeight());
+
+    if(true){
+        for(auto i = 0;i<3;i++){
+            itemArray.emplace_back(new Sword());
+        }
+    }
 
 }
 
@@ -342,6 +348,10 @@ void Player::update(float dt){
         }
     }
 
+    for(i=0;i<itemArray.size();i++){
+        itemArray[i]->update(dt);
+    }
+
     StateData::playerHp[id] = hp;
 }
 
@@ -369,4 +379,12 @@ int Player::getId(){
 
 int Player::getHp(){
     return hp;
+}
+
+std::vector<std::unique_ptr<Item>>* Player::getItens(){
+    return &itemArray;
+}
+
+std::string& Player::getColor(){
+    return color;
 }

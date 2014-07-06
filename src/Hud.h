@@ -6,13 +6,14 @@
 #include "Camera.h"
 #include "Game.h"
 #include "GameObject.h"
+#include "Player.h"
 #include "Sprite.h"
 #include "StateData.h"
 
 class Hud : public GameObject
 {
 public:
-    Hud(float,float,int);
+    Hud(float,float,int,GameObject*);
     void update(float);
     void render();
     bool isDead();
@@ -20,6 +21,7 @@ public:
 	bool is(const std::string&);
 private:
 	GameObject* player;
+	std::vector<std::unique_ptr<Item>>* itemArray;
 	Sprite sp;
 	Sprite hpSp;
 	int id;
