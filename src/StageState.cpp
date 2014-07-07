@@ -1,5 +1,7 @@
 #include "StageState.h"
 
+#include "ActionMenu.h"
+
 StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3") {
     
     float x,y;
@@ -9,6 +11,7 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     std::string str;
     Dice& dice = Dice::getInstance();
     Player* player;
+    ActionMenu menu;
 
     //music.play(-1);
     StateData::turn = 0;
@@ -51,6 +54,7 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     StateData::itemArray.emplace_back("Shuriken");
     StateData::itemArray.emplace_back("Trap");
     StateData::itemArray.emplace_back("Bow");
+     StateData::itemArray.emplace_back("Helmet");
 
 
 
