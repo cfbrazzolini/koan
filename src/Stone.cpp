@@ -1,7 +1,7 @@
 #include "Stone.h"
 
-Stone::Stone(float x,float y,int id,std::vector<int>* _links,const std::string& fileName) : 	spNormal("img/pedras/"+fileName+".PNG"),
-																								spDestacada("img/pedras/"+fileName+"destacada.PNG"),
+Stone::Stone(float x,float y,int id,std::vector<int>* _links,const std::string& fileName) : 	spNormal("img/pedras/"+fileName+".png"),
+																								spDestacada("img/pedras/"+fileName+"destacada.png"),
                                                                                         		sp(&spNormal),
                                                                                         		stoneState(NORMAL),
 																								id(id),

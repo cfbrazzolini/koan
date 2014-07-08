@@ -11,7 +11,7 @@
 #include "GameObject.h"
 #include "Path.h"
 #include "Sprite.h"
-#include "trap.h"
+#include "Trap.h"
 
 class Stone : public GameObject
 {

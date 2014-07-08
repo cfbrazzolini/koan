@@ -14,6 +14,7 @@ public:
     static int turn;
     static std::vector<int> playerHp;
     static std::vector<std::string> itemArray;
+    static bool correctAnswer;
     
 
 };

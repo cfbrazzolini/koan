@@ -172,62 +172,6 @@ void Player::update(float dt){
                             target.id = posId;
                             taskQueue.push(target);
                         }
-
-
-                     /*   while(getline(pathVector,str,'-')){
-                            posId = strtol(str.c_str(),nullptr,10);
-
-                            target.pos.setX(stoneArray[posId]->box.getCenter().getX() + Camera::pos.getX());
-                            target.pos.setY(stoneArray[posId]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                            target.id = posId;
-                            taskQueue.push(target);
-                        }*/
-
-
-
-
-                        /*distance =  std::min(abs(targetId - currentPos),(int)stoneArray.size() - abs(targetId - currentPos));
-                        
-                        direction = (targetId == (currentPos + distance) % stoneArray.size());/* true = sentido horario;false = sentido anti-horario *
-
-                        if(direction){
-                            posId = currentPos;
-                            for(i=0;i<distance;i++){
-                                
-                                posId = (posId + 1) % stoneArray.size();
-
-                                target.pos.setX(stoneArray[posId]->box.getCenter().getX() + Camera::pos.getX());
-                                target.pos.setY(stoneArray[posId]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                                target.id = posId;
-                                taskQueue.push(target);
-                            }
-                        }else{
-                            if(currentPos > targetId){
-                                for(i=currentPos-1;i>=targetId;i--){
-                                    target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                                    target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                                    target.id = i;
-                                    taskQueue.push(target);
-                                }
-                            }else{
-                                i = currentPos-1;
-                                while(!done){
-                                    if(i<0){
-                                        i += stoneArray.size();
-                                    }
-                                    target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                                    target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                                    target.id = i;
-                                    taskQueue.push(target);
-                                    if(i == targetId){
-                                        done = true;
-                                    }else{
-                                        i--;
-                                    }
-                                }
-                            }
-                        }*/
-
                     }
                 }
 
@@ -308,6 +252,7 @@ void Player::update(float dt){
                             moved = true;
                             jogouDado = false;
                             playerState = STANDBY;
+                            Game::getInstance().push(new question());
                              /************ Troca turno  >************/
                         }
 

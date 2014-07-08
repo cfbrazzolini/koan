@@ -8,6 +8,8 @@ Text::Text(const std::string& fontFile,int fontSize,TextStyle style,const std::s
 																															text(text),
 																															color(color)
 {
+	std::locale::global(std::locale("")); 
+
 	std::string result;
 	std::stringstream sstream;
 
@@ -67,6 +69,7 @@ void Text::setPos(int x,int y,bool centerX,bool centerY){
 }
 
 void Text::setText(const std::string& text){
+	// this->text = "にんじんやトマト＿をかいました";
 	this->text = text;
 	remakeTexture();
 }
@@ -97,6 +100,7 @@ void Text::remakeTexture(){
 
 	SDL_Surface* surface;
 	SDL_Rect dimensions;
+	// SDL_EnableUNICODE(1);
 
 	if(texture != nullptr){
 		SDL_DestroyTexture(texture);
@@ -105,11 +109,11 @@ void Text::remakeTexture(){
 	switch(style){
 
 		case TEXT_SOLID:
-            surface = TTF_RenderText_Solid(font,text.c_str(),color);
+            surface = TTF_RenderUTF8_Solid(font,text.c_str(),color);
 			break;
 		case TEXT_SHADED:
             SDL_Color bg;
-            surface = TTF_RenderText_Shaded(font,text.c_str(),color,bg);
+            surface = TTF_RenderUTF8_Shaded (font,text.c_str(),color,bg);
 			break;
 		case TEXT_BLENDED:
             surface = TTF_RenderText_Blended(font,text.c_str(),color);
