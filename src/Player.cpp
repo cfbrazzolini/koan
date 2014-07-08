@@ -9,6 +9,7 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     currentPos(pos),
     //dice(750,550),
     moved(false),
+    stood(false),
     attacked(false),
     jogouDado(false),
     playerState(STANDBY),
@@ -46,6 +47,7 @@ void Player::update(float dt){
     int i,j,posId;
     int distance;
     int targetId = -1;
+    int action;
     bool direction,done=false,alignment=false;
     TARGET_T target;
     std::vector<Path*> paths;
@@ -59,25 +61,40 @@ void Player::update(float dt){
 
             case STANDBY:
 
-                if(moved && attacked){
+                if((moved||stood) && attacked){
                     /****** Passa a vez ******/
                     moved = false;
+                    stood = false;
                     attacked = false;
                     jogouDado = false;
                     StateData::turn = (StateData::turn + 1) % 2;
                 }
-                else if(moved){
+                else if((moved||stood)){
                     /****** Jogador já se moveu mas nao attacked ******/
-                    playerState = ATTACKING;
+                    showActionMenu = true;
+                    playerState = (PlayerState)actionMenu.update((moved||stood),attacked);
+                    if(playerState != STANDBY){
+                        showActionMenu = false;
+                    }
+                    //playerState = ATTACKING;
                 }
                 else if(attacked){
                     /****** Jogador já attacked mas nao se moveu ******/
-                    playerState = MOVING;
+                    showActionMenu = true;
+                    playerState = (PlayerState)actionMenu.update((moved||stood),attacked);
+                    if(playerState != STANDBY){
+                        showActionMenu = false;
+                    }
+                    //playerState = MOVING;
                 }
                 else{
                     /****** Comeco do turno desse jogador ******/
-                    //chooseAction();
-                    playerState = MOVING;
+                    showActionMenu = true;
+                    playerState = (PlayerState)actionMenu.update((moved||stood),attacked);
+                    if(playerState != STANDBY){
+                        showActionMenu = false;
+                    }
+                    //playerState = MOVING;
                 }
                 break;
 
@@ -172,62 +189,6 @@ void Player::update(float dt){
                             target.id = posId;
                             taskQueue.push(target);
                         }
-
-
-                     /*   while(getline(pathVector,str,'-')){
-                            posId = strtol(str.c_str(),nullptr,10);
-
-                            target.pos.setX(stoneArray[posId]->box.getCenter().getX() + Camera::pos.getX());
-                            target.pos.setY(stoneArray[posId]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                            target.id = posId;
-                            taskQueue.push(target);
-                        }*/
-
-
-
-
-                        /*distance =  std::min(abs(targetId - currentPos),(int)stoneArray.size() - abs(targetId - currentPos));
-                        
-                        direction = (targetId == (currentPos + distance) % stoneArray.size());/* true = sentido horario;false = sentido anti-horario *
-
-                        if(direction){
-                            posId = currentPos;
-                            for(i=0;i<distance;i++){
-                                
-                                posId = (posId + 1) % stoneArray.size();
-
-                                target.pos.setX(stoneArray[posId]->box.getCenter().getX() + Camera::pos.getX());
-                                target.pos.setY(stoneArray[posId]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                                target.id = posId;
-                                taskQueue.push(target);
-                            }
-                        }else{
-                            if(currentPos > targetId){
-                                for(i=currentPos-1;i>=targetId;i--){
-                                    target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                                    target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                                    target.id = i;
-                                    taskQueue.push(target);
-                                }
-                            }else{
-                                i = currentPos-1;
-                                while(!done){
-                                    if(i<0){
-                                        i += stoneArray.size();
-                                    }
-                                    target.pos.setX(stoneArray[i]->box.getCenter().getX() + Camera::pos.getX());
-                                    target.pos.setY(stoneArray[i]->box.getCenter().getY() + Camera::pos.getY() - sp->getHeight()/2);
-                                    target.id = i;
-                                    taskQueue.push(target);
-                                    if(i == targetId){
-                                        done = true;
-                                    }else{
-                                        i--;
-                                    }
-                                }
-                            }
-                        }*/
-
                     }
                 }
 
@@ -307,6 +268,7 @@ void Player::update(float dt){
                             /************< Troca turno  ************/
                             moved = true;
                             jogouDado = false;
+                            /*Game::getInstance().push(new QuestionState());*/
                             playerState = STANDBY;
                              /************ Troca turno  >************/
                         }
@@ -327,6 +289,14 @@ void Player::update(float dt){
                     /* Movimentacao >*/
                 }
 
+                break;
+            case STAND:
+                    /************< Troca turno  ************/
+                    stood = true;
+                    jogouDado = false;
+                    /*Game::getInstance().push(new QuestionState());*/
+                    playerState = STANDBY;
+                     /************ Troca turno  >************/
                 break;
             case ATTACKING:
 
@@ -358,6 +328,9 @@ void Player::update(float dt){
 void Player::render(){
     sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY(),rotation,flip);
     //Dice::getInstance().render();
+    if(showActionMenu){
+        actionMenu.render();
+    }
 }
 
 bool Player::isDead(){

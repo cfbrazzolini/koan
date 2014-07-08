@@ -11,7 +11,6 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     std::string str;
     Dice& dice = Dice::getInstance();
     Player* player;
-    ActionMenu menu;
 
     //music.play(-1);
     StateData::turn = 0;

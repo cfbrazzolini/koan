@@ -17,20 +17,24 @@
 
 class ActionMenu : public GameObject
 {
+private:
+	enum PlayerState {STANDBY,MOVING,ATTACKING,STAND};
+	ActionNode* currentNode;
+	ActionNode* nextAction;
+	std::map<std::string,ActionNode*> actions;
+	bool done;
 public:
     ActionMenu(float=Game::getInstance().getWindowWidth()/2,float=Game::getInstance().getWindowHeight()/2);
     std::vector<std::string> mountPath(std::string);
     void buildTree();
+    int update(bool=false,bool=false);
     void update(float);
 	void render();
 	bool isDead();
 	void notifyCollision(GameObject&);
 	bool is(const std::string&);
     void printTree(ActionNode* = nullptr);
-private:
-	ActionNode* currentNode;
-	ActionNode* nextAction;
-	std::map<std::string,ActionNode*> actions;
+
 };
 
 #endif // ACTIONMENU_H

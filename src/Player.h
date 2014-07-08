@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "ActionMenu.h"
 #include "Bow.h"
 #include "Camera.h"
 #include "CustomMath.h"
@@ -51,12 +52,13 @@ public:
     std::vector<std::unique_ptr<Item>>* getItens();
     std::string& getColor();
 private:
-	enum PlayerState {STANDBY,MOVING,ATTACKING};
+	enum PlayerState {STANDBY,MOVING,ATTACKING,STAND};
 	Sprite* sp;
 	Sprite spFrente;
 	Sprite spDireita;
 	Sprite spEsquerda;
 	Sprite spCostas;
+	ActionMenu actionMenu;
 
 	std::queue<TARGET_T> taskQueue;
 	std::vector<int> validStones;
@@ -65,6 +67,7 @@ private:
 	SDL_RendererFlip flip;
 	PlayerState playerState;
 	bool moved;
+	bool stood;
 	bool attacked;
 	bool jogouDado;
 	int hp;
@@ -72,6 +75,7 @@ private:
 	int id;
 	int movementsRemaining;
     std::string color;
+    bool showActionMenu;
 };
 
 #endif // PLAYER_H

@@ -1,6 +1,6 @@
 #include "ActionMenu.h"
 
-ActionMenu::ActionMenu(float x,float y) : currentNode(nullptr),nextAction(nullptr)
+ActionMenu::ActionMenu(float x,float y) : currentNode(nullptr),nextAction(nullptr),done(false)
 {
 	buildTree();
 	printTree();
@@ -88,9 +88,24 @@ void ActionMenu::buildTree(){
     //printf("Root id: %s\n\n",actions.begin()->second->getId().c_str());
 }
 
-void ActionMenu::update(float dt){
+
+
+int ActionMenu::update(bool moved,bool attacked){
     auto& input = InputManager::getInstance();
-    Point click;
+    PlayerState result = STANDBY;
+
+    if(moved && !attacked && !done){
+        currentNode = actions["120"];
+        done = true;
+    }
+    else if(attacked && !moved && !done){
+        currentNode = actions["110"];
+        done = true;
+    }
+    else if(!moved && !attacked && !done){
+        currentNode = actions["1"];
+        done = true;
+    }
 
     if(nextAction == nullptr){
         nextAction = currentNode;
@@ -103,8 +118,33 @@ void ActionMenu::update(float dt){
         nextAction = currentNode->getPrevAction();
     }
     else if(input.keyPress(ENTER_KEY)){
-        currentNode = nextAction;
+
+        if(currentNode->getId().back() != '0'){
+            if(currentNode->getId() == "11" || currentNode->getId() == "121" || currentNode->getId() == "131"){
+            result = ATTACKING;
+            }
+            else if(currentNode->getId() == "111" || currentNode->getId() == "12"){
+                result = MOVING;
+            }
+            else if(currentNode->getId() == "112" || currentNode->getId() == "13"){
+                result = STAND;
+            }
+
+
+            if(currentNode->getId().size() == 3){
+                currentNode = actions["2"];
+            }else{
+                currentNode = actions[nextAction->getId()+"0"];
+            }
+            nextAction = nullptr;
+        }
     }
+
+    return result;
+}
+
+void ActionMenu::update(float dt){
+    
 }
 
 void ActionMenu::render(){
