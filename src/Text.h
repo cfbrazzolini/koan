@@ -1,6 +1,7 @@
 #ifndef TEXT_H
 #define TEXT_H
 
+#include "SDL.h"
 #include <SDL_ttf.h>
 #include <string>
 #include <sstream>

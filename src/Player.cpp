@@ -270,6 +270,7 @@ void Player::update(float dt){
                             jogouDado = false;
                             /*Game::getInstance().push(new QuestionState());*/
                             playerState = STANDBY;
+                            Game::getInstance().push(new question());
                              /************ Troca turno  >************/
                         }
 

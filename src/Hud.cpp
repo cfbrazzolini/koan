@@ -3,12 +3,12 @@
 #include <iostream>
 
 Hud::Hud(float x, float y, int id,GameObject* player) :
-													hpSp("img/hp_itens/barras/20vida.PNG"),
+													hpSp("img/hp_itens/barras/20vida.png"),
                                                 	id(id),
                                                 	player(player)
 
 {
-    sp.open("img/hp_itens/barradomonge" + ((Player*)player)->getColor() + ".PNG");
+    sp.open("img/hp_itens/barradomonge" + ((Player*)player)->getColor() + ".png");
 	sp.setScale(0.2);
 	hpSp.setScale(0.2);
 
@@ -38,7 +38,7 @@ void Hud::update(float dt){
 	if(lastHp != StateData::playerHp[id]){
 		lastHp = StateData::playerHp[id];
 		//std::cout << "img/hp_itens/barras/" << lastHp << "vida.PNG" << std::endl;
-        hpSp.open("img/hp_itens/barras/" + std::to_string(lastHp) + "vida.PNG");
+        hpSp.open("img/hp_itens/barras/" + std::to_string(lastHp) + "vida.png");
 		hpSp.setScale(0.2);
 	}
 

@@ -1,5 +1,403 @@
-// #include "question.h"
+#include "question.h"
 
-// question::question()
-// {
-// }
+using namespace std;
+
+question::question() :  bg("img/perguntas/mapaembacado.png"),
+						mestre("img/perguntas/mestre.png"),
+						balao("img/perguntas/balao.png"),
+						pVerde("img/perguntas/pergaminhoverde.png"),
+						pRoxo("img/perguntas/pergaminhoroxo.png"),
+						pVermelho("img/perguntas/pergaminhovermelho.png"),
+						pAmarelo("img/perguntas/pergaminhoamarelo.png"),
+						certo("img/perguntas/certo.png"),
+						errado("img/perguntas/errado.png"),
+						pergunta("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						certa("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						errada1("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						errada2("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						errada3("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0)
+{
+	mestre.setScale(0.19);
+    mestreBox.setX(Game::getInstance().getWindowWidth() - mestre.getWidth() - 460);
+    mestreBox.setY(Game::getInstance().getWindowHeight() - mestre.getHeight() - 40);
+
+	balaoBox.setX(Game::getInstance().getWindowWidth() - balao.getWidth() - 20);
+    balaoBox.setY(Game::getInstance().getWindowHeight() - balao.getHeight() - 400);
+
+    verdeBox.setX(Game::getInstance().getWindowWidth() - pVerde.getWidth() - 30);
+    verdeBox.setY(Game::getInstance().getWindowHeight() - pVerde.getHeight() - 280);
+    verdeBox.setW(pVerde.getWidth());
+    verdeBox.setH(pVerde.getHeight());
+
+    vermelhoBox.setX(Game::getInstance().getWindowWidth() - pVermelho.getWidth() - 30);
+    vermelhoBox.setY(Game::getInstance().getWindowHeight() - pVermelho.getHeight() - 170);
+    vermelhoBox.setW(pVermelho.getWidth());
+    vermelhoBox.setH(pVermelho.getHeight());
+
+    roxoBox.setX(Game::getInstance().getWindowWidth() - pRoxo.getWidth() - 30);
+    roxoBox.setY(Game::getInstance().getWindowHeight() - pRoxo.getHeight() - 70);
+    roxoBox.setW(pRoxo.getWidth());
+    roxoBox.setH(pRoxo.getHeight());
+
+    amareloBox.setX(Game::getInstance().getWindowWidth() - pAmarelo.getWidth() - 30);
+    amareloBox.setY(Game::getInstance().getWindowHeight() - pAmarelo.getHeight() + 20);
+    amareloBox.setW(pAmarelo.getWidth());
+    amareloBox.setH(pAmarelo.getHeight());
+
+    //opcao e para tipo de pergunta, ta ok
+    int opcao = (rand() % 3);
+    int value = 0, index = 0;
+	if(opcao == 0){
+		// escolhe uma linha do arq grammar
+		std::ifstream file ("img/grammar.txt");
+		value = (rand() % 32);
+    	index = value*5 + 1;cout << file << endl;
+	    std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
+	    if(file.is_open()){
+	    	
+	        // acha a linha
+	        for(int i = 0; i < index; i++){
+	    		getline(file,strPergunta,'\n');
+	    	}
+	    	getline(file,strCorreta1,'\n');
+	    	getline(file,strErrada1,'\n');
+	    	getline(file,strErrada2,'\n');
+	  		getline(file,strErrada3,'\n');
+	    	int localResposta = (rand() % 4);
+	    	cout << localResposta << endl;
+			if(localResposta == 0){
+				answer = VERDE;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    certa.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 1){
+				answer = VERMELHO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    
+			    errada1.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+				certa.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 2){
+				answer = ROXO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    certa.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 3){
+				answer = AMARELO;
+				answer = ROXO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada3.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    certa.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+        }else{
+	        printf("Nao conseguiu abrir\n");
+	    }
+	    file.close();
+	}
+	if(opcao == 1){
+		std::ifstream file ("img/expressoes.txt");
+		value = (rand() % 29);
+    	index = value*5 + 1;cout << file << endl;
+    	std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
+	    if(file.is_open()){
+	    	
+	        // acha a linha
+	        for(int i = 0; i < index; i++){
+	    		getline(file,strPergunta,'\n');
+	    	}
+	    	getline(file,strCorreta1,'\n');
+	    	getline(file,strErrada1,'\n');
+	    	getline(file,strErrada2,'\n');
+	  		getline(file,strErrada3,'\n');
+
+	  		int localResposta = (rand() % 4);
+	  		cout << localResposta << endl;
+	  			if(localResposta == 0){
+				answer = VERDE;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    certa.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 1){
+				answer = VERMELHO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    
+			    errada1.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+				certa.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 2){
+				answer = ROXO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    certa.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 3){
+				answer = AMARELO;
+				answer = ROXO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada3.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    certa.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+        }else{
+	        printf("Nao conseguiu abrir\n");
+	    }
+	    file.close();
+	}
+	if(opcao == 2){
+		std::ifstream file ("img/kanji.txt");
+		value = (rand() % 202);
+    	index = value*5 + 1;cout << file << endl;
+    	std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
+	    if(file.is_open()){
+	    	
+	        // acha a linha
+	        for(int i = 0; i < index; i++){
+	    		getline(file,strPergunta,'\n');
+	    	}
+	    	getline(file,strCorreta1,'\n');
+	    	getline(file,strErrada1,'\n');
+	    	getline(file,strErrada2,'\n');
+	  		getline(file,strErrada3,'\n');
+
+	  		int localResposta = (rand() % 4);
+	  		cout << localResposta << endl;
+	  			if(localResposta == 0){
+				answer = VERDE;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    certa.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 1){
+				answer = VERMELHO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    
+			    errada1.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+				certa.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 2){
+				answer = ROXO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    certa.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    errada3.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		    if(localResposta == 3){
+				answer = AMARELO;
+				answer = ROXO;
+			    pergunta.setText(strPergunta);
+			    certa.setText(strCorreta1);
+			    errada1.setText(strErrada1);
+			    errada2.setText(strErrada2);
+			    errada3.setText(strErrada3);
+
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2,(verdeBox.getY() - Camera::pos.getY())/2 - 10,true,true);
+			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2,(vermelhoBox.getY() - Camera::pos.getY())/2 - 70,true,true);
+			    errada3.setPos((roxoBox.getX() - Camera::pos.getX())/2,(roxoBox.getY() - Camera::pos.getY())/2 - 120,true,true);
+			    certa.setPos((amareloBox.getX() - Camera::pos.getX())/2,(amareloBox.getY() - Camera::pos.getY())/2 - 160,true,true);
+		    }
+		}else{
+	        printf("Nao conseguiu abrir\n");
+	    }
+	    file.close();
+	}
+	// answer = VERDE;
+}
+
+void question::update(float){
+	input();
+}
+
+void question::render(){
+	bg.render(0,0);
+
+    mestre.render(mestreBox.getX() - Camera::pos.getX(),mestreBox.getY() - Camera::pos.getY());
+    balao.render(balaoBox.getX() - Camera::pos.getX(),balaoBox.getY() - Camera::pos.getY());
+    pVerde.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
+    pVermelho.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
+    pRoxo.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
+    pAmarelo.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
+
+    pergunta.render(balaoBox.getX() - Camera::pos.getX(),balaoBox.getY() - Camera::pos.getY());
+    certa.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
+    errada1.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
+    errada2.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
+    errada3.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
+
+    if(StateData::correctAnswer == true && answer == VERDE){
+    	certo.setScale(0.15);
+    	certo.render(verdeBox.getX() - Camera::pos.getX() + 120,verdeBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(StateData::correctAnswer == true && answer == VERMELHO){
+    	certo.setScale(0.15);
+    	certo.render(vermelhoBox.getX() - Camera::pos.getX() + 120,vermelhoBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(StateData::correctAnswer == true && answer == AMARELO){
+    	certo.setScale(0.15);
+    	certo.render(amareloBox.getX() - Camera::pos.getX() + 120,amareloBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(StateData::correctAnswer == true && answer == ROXO){
+    	certo.setScale(0.15);
+    	certo.render(roxoBox.getX() - Camera::pos.getX() + 120,roxoBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(answer == E_VERDE){
+    	errado.setScale(0.15);
+    	errado.render(verdeBox.getX() - Camera::pos.getX() + 120,verdeBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(answer == E_VERMELHO){
+    	errado.setScale(0.15);
+    	errado.render(vermelhoBox.getX() - Camera::pos.getX() + 120,vermelhoBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(answer == E_AMARELO){
+    	errado.setScale(0.15);
+    	errado.render(amareloBox.getX() - Camera::pos.getX() + 120,amareloBox.getY() - Camera::pos.getY() + 40);
+    }
+    if(answer == E_ROXO){
+    	errado.setScale(0.15);
+    	errado.render(roxoBox.getX() - Camera::pos.getX() + 120,roxoBox.getY() - Camera::pos.getY() + 40);
+    }
+
+}
+
+void question::input(){
+
+	auto& input = InputManager::getInstance();
+    Point click;
+
+
+    click.setX((float)input.getMouseX() + Camera::pos.getX());
+    click.setY((float)input.getMouseY() + Camera::pos.getY());
+    if(input.keyPress(ESCAPE_KEY) || input.shouldQuit()){
+        hasRequestedQuit = true;
+    }
+    if(input.mousePress(SDL_BUTTON_LEFT) && verdeBox.hasPoint(click)){
+        if(answer == VERDE){
+        	cout << "verde mesmo" << endl;
+        	StateData::correctAnswer = true;
+        	hasRequestedDelete = true;
+        }
+        else{
+	        answer = E_VERDE;
+	        hasRequestedDelete = true;
+	    }
+    }
+    if(input.mousePress(SDL_BUTTON_LEFT) && roxoBox.hasPoint(click)){
+        if(answer == ROXO){
+        	cout << "roxo mesmo" << endl;
+        	StateData::correctAnswer = true;
+        	hasRequestedDelete = true;
+        }
+        else{
+	        answer = E_ROXO;
+	        hasRequestedDelete = true;
+	    }
+    }
+    if(input.mousePress(SDL_BUTTON_LEFT) && vermelhoBox.hasPoint(click)){
+        if(answer == VERMELHO){
+        	cout << "vermelho mesmo" << endl;
+        	StateData::correctAnswer = true;
+        	hasRequestedDelete = true;
+        }
+        else{
+	        answer = E_VERMELHO;hasRequestedDelete = true;
+	    }
+    }
+    if(input.mousePress(SDL_BUTTON_LEFT) && amareloBox.hasPoint(click)){
+        if(answer == AMARELO){
+        	cout << "amarelo mesmo" << endl;
+        	StateData::correctAnswer = true;hasRequestedDelete = true;
+        }
+        else{
+	        answer = E_AMARELO;hasRequestedDelete = true;
+	    }
+    }
+}
+
+
+ 

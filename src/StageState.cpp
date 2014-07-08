@@ -1,6 +1,6 @@
 #include "StageState.h"
 
-#include "ActionMenu.h"
+// #include "ActionMenu.h"
 
 StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3") {
     
@@ -12,22 +12,9 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     Dice& dice = Dice::getInstance();
     Player* player;
 
+
     //music.play(-1);
     StateData::turn = 0;
-
-    
-   /* if(file.is_open()){
-        while(getline(file,str,',')){
-            x = strtol(str.c_str(),nullptr,10);
-            getline(file,str,'\t');
-            y = strtol(str.c_str(),nullptr,10);
-            getline(file,str);
-
-            stone = new Stone(x,y,"img/pedras/" + str + ".png","img/pedras/" + str + "destacada.png",id++);
-            stoneArray.emplace_back(stone);
-            objectArray.emplace_back(stone);
-        }
-    }*/
 
     for(auto it=map.nodeMap.begin();it != map.nodeMap.end();++it){
             stoneArray.emplace(it->first,it->second);
@@ -53,7 +40,7 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     StateData::itemArray.emplace_back("Shuriken");
     StateData::itemArray.emplace_back("Trap");
     StateData::itemArray.emplace_back("Bow");
-     StateData::itemArray.emplace_back("Helmet");
+    StateData::itemArray.emplace_back("Helmet");
 
 
 

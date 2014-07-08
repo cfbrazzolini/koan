@@ -19,6 +19,7 @@
 #include "Hud.h"
 #include "Item.h"
 #include "Point.h"
+#include "question.h"
 #include "Shuriken.h"
 #include "Sprite.h"
 #include "StateData.h"
