@@ -3,7 +3,7 @@
 Sword::Sword() : used(false)
 {	
 	sp.open("img/armas/espada/espada3.png");
-	sp.setScale(0.2);
+	sp.setScale(0.15);
 	uses = 3;
 	reach = 3;
 	damage = 5;

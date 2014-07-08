@@ -9,8 +9,8 @@ Hud::Hud(float x, float y, int id,GameObject* player) :
 
 {
     sp.open("img/hp_itens/barradomonge" + ((Player*)player)->getColor() + ".png");
-	sp.setScale(0.2);
-	hpSp.setScale(0.2);
+	sp.setScale(0.15);
+	hpSp.setScale(0.15);
 
 	if(id == 0){
 		box.setX(0);
@@ -32,14 +32,14 @@ void Hud::update(float dt){
 
     //std::cout << "last hp:" << lastHp << "player hp" << StateData::playerHp[id] << std::endl;
     for(auto i = 0;i < itemArray->size();i++){
-        itemArray->at(i)->setPos(box.getCenter().getX() - 22 +60*i,box.getCenter().getY() + 5);
+        itemArray->at(i)->setPos(box.getCenter().getX() - 19 +45*i,box.getCenter().getY() + 5);
     }
 
 	if(lastHp != StateData::playerHp[id]){
 		lastHp = StateData::playerHp[id];
 		//std::cout << "img/hp_itens/barras/" << lastHp << "vida.PNG" << std::endl;
         hpSp.open("img/hp_itens/barras/" + std::to_string(lastHp) + "vida.png");
-		hpSp.setScale(0.2);
+		hpSp.setScale(0.15);
 	}
 
     for(auto i = 0;i < itemArray->size();i++){

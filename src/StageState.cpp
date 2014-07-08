@@ -125,6 +125,6 @@ void StageState::render(){
     int i;
 
 
-    bg.render(0,0);
+    bg.render(200,0);
     renderArray();
 }
