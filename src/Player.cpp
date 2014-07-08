@@ -78,6 +78,7 @@ void Player::update(float dt){
 
                     case Globals::STAND:
                         playerState = STAND;
+                        break;
 
                     case Globals::FINISH:
                         jogouDado = false;
