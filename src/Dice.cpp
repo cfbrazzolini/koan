@@ -33,7 +33,14 @@ void Dice::update(float dt){
 void Dice::render(){
 	// printf("%d\n", StateData::turn);
 	//printf("%d %d\n", StateData::turn, this->value);
-	sp.render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY());
+	sp.render(StateData::turn*(Game::getInstance().getWindowWidth()-sp.getWidth()) - Camera::pos.getX(),Game::getInstance().getWindowHeight()/2 - sp.getHeight()/2 - Camera::pos.getY());
+    
+	
+    if(StateData::turn == 0){
+    	numero.setPos(sp.getWidth()/2 - Camera::pos.getX(),Game::getInstance().getWindowHeight()/2  - Camera::pos.getY(),true,true);
+    }else{
+    	numero.setPos(StateData::turn*(Game::getInstance().getWindowWidth()-sp.getWidth()/2) - Camera::pos.getX(),Game::getInstance().getWindowHeight()/2 - Camera::pos.getY(),true,true);
+    }
 	numero.render();
  }
 

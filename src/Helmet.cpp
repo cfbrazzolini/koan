@@ -2,6 +2,11 @@
 
 Helmet::Helmet()
 {
+	sp.open("img/armas/capacete/capacete 5.png");
+	sp.setScale(0.15);
+	damage = 5;
+	rechargeable = false;
+
 }
 
 void Helmet::update(float dt){

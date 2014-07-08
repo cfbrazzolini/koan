@@ -7,7 +7,6 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     spCostas("img/movimento/"+ color +"Costas.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
     stoneArray(stoneArray),
     currentPos(pos),
-    //dice(750,550),
     moved(false),
     stood(false),
     attacked(false),
@@ -17,7 +16,7 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     hp(PLAYER_HP),
     id(id),
     color(color),
-    actionMenu()
+    actionMenu(Game::getInstance().getWindowWidth()*id,Game::getInstance().getWindowHeight())
 {
     sp = &spFrente;
     sp->setScale(0.2);
@@ -30,9 +29,11 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     box.setH(sp->getHeight());
 
     if(true){
-        for(auto i = 0;i<3;i++){
-            itemArray.emplace_back(new Sword());
-        }
+        
+        itemArray.emplace_back(new Sword());
+        itemArray.emplace_back(new Bow());
+        itemArray.emplace_back(new Shuriken());
+        
     }
 
 }
@@ -299,6 +300,12 @@ void Player::update(float dt){
     for(i=0;i<itemArray.size();i++){
         itemArray[i]->update(dt);
     }
+
+    for(i=0;i<itemArray.size();i++){
+            if(itemArray[i]->isDead()){
+                itemArray.erase(itemArray.begin()+i);
+            }
+        }
 
    
 }

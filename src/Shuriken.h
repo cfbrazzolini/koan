@@ -5,6 +5,8 @@
 
 class Shuriken : public Item
 {
+private:
+	bool used;
 public:
     Shuriken();
     void update(float);
@@ -12,6 +14,7 @@ public:
     bool isDead();
     void notifyCollision(GameObject&);
     bool is(const std::string&);
+    void use();
 };
 
 #endif // SHURIKEN_H

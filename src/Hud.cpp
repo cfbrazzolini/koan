@@ -32,7 +32,7 @@ void Hud::update(float dt){
 
     //std::cout << "last hp:" << lastHp << "player hp" << StateData::playerHp[id] << std::endl;
     for(auto i = 0;i < itemArray->size();i++){
-        itemArray->at(i)->setPos(box.getCenter().getX() - 19 +45*i,box.getCenter().getY() + 5);
+        itemArray->at(i)->setPos(box.getCenter().getX() - 18 +45*i,box.getCenter().getY() + 5);
     }
 
 	if(lastHp != StateData::playerHp[id]){

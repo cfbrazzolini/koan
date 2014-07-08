@@ -1,6 +1,6 @@
 #include "ActionMenu.h"
 
-ActionMenu::ActionMenu() :
+ActionMenu::ActionMenu(float x, float y) :
 sp(nullptr),
 root(nullptr),
 currentNode(nullptr)
@@ -8,8 +8,13 @@ currentNode(nullptr)
 
     buildTree();
 
-    box.setX(Game::getInstance().getWindowWidth()/2 - sp->getWidth()/2);
-    box.setY(Game::getInstance().getWindowHeight()/2 - sp->getHeight()/2);
+    if(x==0){
+        box.setX(0);
+    }else{
+        box.setX( x - sp->getWidth());
+    }
+
+    box.setY(y - sp->getHeight());
     rotation = 0;
 
 }
@@ -85,7 +90,7 @@ int ActionMenu::update(){
     int result = Globals::START;
     bool found = false;
 
-    if(showingNode->getType() != 4){
+    if(showingNode->getId() != 2000){
         if(input.keyPress(SDLK_DOWN)){
             showingNode = currentNode->getNextAction();
         }

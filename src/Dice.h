@@ -6,6 +6,7 @@
 #include <string>
 
 #include "Camera.h"
+#include "Game.h"
 #include "GameObject.h"
 #include "Sprite.h"
 #include "StateData.h"

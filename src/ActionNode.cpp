@@ -6,7 +6,7 @@ type(type),
 sp("img/actionmenu/"+file_name+".png"),
 currentAction(-1)
 {
-    sp.setScale(0.375);
+    sp.setScale(0.25);
 
 }
 

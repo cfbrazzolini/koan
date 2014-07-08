@@ -5,7 +5,7 @@ Sword::Sword() : used(false)
 	sp.open("img/armas/espada/espada3.png");
 	sp.setScale(0.15);
 	uses = 3;
-	reach = 3;
+	reach = 2;
 	damage = 5;
 	rechargeable = false;
 }
