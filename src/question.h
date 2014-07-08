@@ -47,9 +47,11 @@ private:
 	Sprite pAmarelo;
 	Rect amareloBox;
 
+	Sprite certo;
+	Sprite errado;
 
-	enum CorrectAnswer {VERDE, ROXO, AMARELO, VERMELHO};
-	CorrectAnswer answer;
+	enum Answer {VERDE, ROXO, AMARELO, VERMELHO, E_VERDE, E_ROXO, E_AMARELO, E_VERMELHO};
+	Answer answer;
 
 	//BlockTileSet tileSet;
 	//TileMap tileMap;

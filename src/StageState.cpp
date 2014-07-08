@@ -1,6 +1,6 @@
 #include "StageState.h"
 
-#include "ActionMenu.h"
+// #include "ActionMenu.h"
 
 StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3") {
     
@@ -11,7 +11,7 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     std::string str;
     Dice& dice = Dice::getInstance();
     Player* player;
-    ActionMenu menu;
+    // ActionMenu menu;
 
     //music.play(-1);
     StateData::turn = 0;

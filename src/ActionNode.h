@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-#include "game.h"
+#include "Game.h"
 #include "Sprite.h"
 
 class ActionNode
