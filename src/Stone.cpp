@@ -9,8 +9,17 @@ Stone::Stone(float x,float y,int id,std::vector<int>* _links,const std::string& 
 {
 
 	rotation = 0;
-	spDestacada.setScale(0.09);
-	spNormal.setScale(0.09);
+
+    if(fileName == "pedratalhada"){
+        spDestacada.setScale(0.1);
+        spNormal.setScale(0.1);
+    }else{
+        spDestacada.setScale(0.075);
+        spNormal.setScale(0.075);
+    }
+	
+
+
 	box.setX(x - sp->getWidth()/2);
 	box.setY(y - sp->getHeight()/2);
 	box.setW(sp->getWidth());

@@ -16,7 +16,8 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     movementsRemaining(0),
     hp(PLAYER_HP),
     id(id),
-    color(color)
+    color(color),
+    actionMenu()
 {
     sp = &spFrente;
     sp->setScale(0.2);
@@ -54,48 +55,41 @@ void Player::update(float dt){
     std::string pathVector,str;
     std::size_t found,last_found;
 
+    showActionMenu = false;
+
 
     if(StateData::turn == id){
 
         switch(playerState){
 
             case STANDBY:
+                action = actionMenu.update();
 
-                if((moved||stood) && attacked){
-                    /****** Passa a vez ******/
-                    moved = false;
-                    stood = false;
-                    attacked = false;
-                    jogouDado = false;
-                    StateData::turn = (StateData::turn + 1) % 2;
+                showActionMenu = false;
+
+                switch(action){
+                    case Globals::ATTACK :
+                        playerState = ATTACKING;
+                        break;
+                    
+                    case Globals::MOVE :
+                        playerState = MOVING;
+                        break;
+
+                    case Globals::STAND:
+                        playerState = STAND;
+
+                    case Globals::FINISH:
+                        jogouDado = false;
+                        StateData::turn = (StateData::turn + 1) % 2;
+                        playerState = STANDBY;
+                        break;
+                    default:
+                        playerState = STANDBY;
+                        showActionMenu = true;
+                        break;
                 }
-                else if((moved||stood)){
-                    /****** Jogador já se moveu mas nao attacked ******/
-                    showActionMenu = true;
-                    playerState = (PlayerState)actionMenu.update((moved||stood),attacked);
-                    if(playerState != STANDBY){
-                        showActionMenu = false;
-                    }
-                    //playerState = ATTACKING;
-                }
-                else if(attacked){
-                    /****** Jogador já attacked mas nao se moveu ******/
-                    showActionMenu = true;
-                    playerState = (PlayerState)actionMenu.update((moved||stood),attacked);
-                    if(playerState != STANDBY){
-                        showActionMenu = false;
-                    }
-                    //playerState = MOVING;
-                }
-                else{
-                    /****** Comeco do turno desse jogador ******/
-                    showActionMenu = true;
-                    playerState = (PlayerState)actionMenu.update((moved||stood),attacked);
-                    if(playerState != STANDBY){
-                        showActionMenu = false;
-                    }
-                    //playerState = MOVING;
-                }
+
                 break;
 
             case MOVING:
@@ -106,7 +100,6 @@ void Player::update(float dt){
 
                     /*< Rola o dado */
                     dice.setValue();
-                    //dice.update(dt);
                     /* Rola o dado >*/
 
                     /*< Calcula casas alcancaveis e muda suas cores */
@@ -120,23 +113,6 @@ void Player::update(float dt){
                          validStones.emplace_back(paths[i]->getTarget());
                     }
 
-
-
-                    /*
-                    validStones.emplace_back((currentPos + movementsRemaining) % stoneArray.size());
-
-
-
-
-                    posId = (currentPos - movementsRemaining);
-
-                    if(posId < 0){
-                        posId += stoneArray.size();
-                    }
-
-                    validStones.emplace_back(posId);
-
-                    */
 
                     for(i=0;i<validStones.size();i++){
                         stoneArray[validStones[i]]->selecionar();
@@ -268,7 +244,6 @@ void Player::update(float dt){
                             /************< Troca turno  ************/
                             moved = true;
                             jogouDado = false;
-                            /*Game::getInstance().push(new QuestionState());*/
                             playerState = STANDBY;
                             Game::getInstance().push(new question());
                              /************ Troca turno  >************/
@@ -295,35 +270,36 @@ void Player::update(float dt){
                     /************< Troca turno  ************/
                     stood = true;
                     jogouDado = false;
-                    /*Game::getInstance().push(new QuestionState());*/
                     playerState = STANDBY;
+                    Game::getInstance().push(new question());
                      /************ Troca turno  >************/
                 break;
             case ATTACKING:
 
-                std::cout << "Ataquei!" << std::endl;
+                /*std::cout << "Ataquei!" << std::endl;
                 attacked = true;
-                playerState = STANDBY;
+                playerState = STANDBY;*/
 
-
+                if(input.mousePress(SDL_BUTTON_LEFT)){
+                    click.setX((float)input.getMouseX() + Camera::pos.getX());
+                    click.setY((float)input.getMouseY() + Camera::pos.getY());
+                    if(box.hasPoint(click)){
+                        StateData::playerHp[(id+1)%2] = StateData::playerHp[(id+1)%2]--;
+                        attacked = true;
+                        playerState = STANDBY;
+                    }
+                }
                 break;
         }
     }else{
-        if(input.mousePress(SDL_BUTTON_LEFT)){
-            click.setX((float)input.getMouseX() + Camera::pos.getX());
-            click.setY((float)input.getMouseY() + Camera::pos.getY());
-            if(box.hasPoint(click)){
-                //std::cout << "Hp restante: " << hp << std::endl;
-                 hp--;
-            }
-        }
+         StateData::playerHp[id] = hp;
     }
 
     for(i=0;i<itemArray.size();i++){
         itemArray[i]->update(dt);
     }
 
-    StateData::playerHp[id] = hp;
+   
 }
 
 void Player::render(){

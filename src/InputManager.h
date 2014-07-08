@@ -21,7 +21,7 @@
 #define D_KEY               SDLK_d
 #define S_KEY               SDLK_s
 #define Z_KEY               SDLK_z
-#define ENTER_KEY               SDLK_BACKSPACE
+#define ENTER_KEY           SDLK_RETURN
 
 
 class InputManager

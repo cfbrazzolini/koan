@@ -1,33 +1,16 @@
 #include "ActionMenu.h"
 
-ActionMenu::ActionMenu(float x,float y) : currentNode(nullptr),nextAction(nullptr),done(false)
+ActionMenu::ActionMenu() :
+sp(nullptr),
+root(nullptr),
+currentNode(nullptr)
 {
-	buildTree();
-	printTree();
 
-    box.setX(x - actions["1"]->getSprite()->getWidth()/2);
-    box.setY(y - actions["1"]->getSprite()->getHeight()/2);
+    buildTree();
 
-}
-
-void ActionMenu::printTree(ActionNode* node){
-
-	if(node == nullptr){
-		node = actions["1"];
-        printf("%s\n\n",node->getId().c_str());
-    }
-    
-
-    for(auto i = 0;i < node->getId().size();i++){
-		printf("-");
-	}
-    printf(">%s\n",node->getId().c_str());
-
-
-    auto children  = node->getChildren();
-	for(auto it = children.begin();it != children.end();it++){
-		printTree(it->second);
-	}
+    box.setX(Game::getInstance().getWindowWidth()/2 - sp->getWidth()/2);
+    box.setY(Game::getInstance().getWindowHeight()/2 - sp->getHeight()/2);
+    rotation = 0;
 
 }
 
@@ -44,115 +27,115 @@ std::vector<std::string> ActionMenu::mountPath(std::string str){
     return path;
 }
 
-
 void ActionMenu::buildTree(){
 
     std::string file_name,str;
+    std::vector<std::string> path;
+    ActionNode *node,*last_node;
     std::ifstream file ("map/actionMap.txt");
-    ActionNode* node;
-    ActionNode* lastNode;
+    int idNum,type;
 
     if(file.is_open()){
-    	while(getline(file,str)){
-    		lastNode = nullptr;
-    		node = nullptr;
+        while(getline(file,str)&& str!="#"){
+            path = mountPath(str);
 
-            //printf("Line: %s\n\n",str.c_str());
+            last_node = nullptr;
 
-            auto path = mountPath(str);
-    		for(auto id : path){
-                //printf("%s\n",id.c_str());
-                auto pos = actions.find(id);
-                if(pos == actions.end()){
+            for(auto id : path){
 
-                    node = new ActionNode(id,id+".PNG");
-    				actions[id] = node;
-                    //printf("%s\n",actions[id]->getId().c_str());
-                    if(currentNode == nullptr){
+                auto pos = actionMap.find(std::stoi(id));
+                if(pos == actionMap.end()){
+                    node = new ActionNode(std::stoi(id),-1,id);
+                    actionMap[node->getId()] = node;
+                    if(sp == nullptr){
+                        sp = node->getSprite();
                         currentNode = node;
+                        root = node;
+                        showingNode = node;
                     }
-    			}else{
+                }else{
                     node = pos->second;
-    			}
+                }
 
-    			if(lastNode != nullptr){
-    				lastNode->addChild(node);
-    			}
-                lastNode = node;
-    		}
-            //printf("\n\n");
-
+                if(last_node != nullptr){
+                    last_node->addChild(node);
+                }
+                last_node = node;    
+            }
         }
-    }
-    file.close();
-    //printf("Root id: %s\n\n",actions.begin()->second->getId().c_str());
-}
+        while(getline(file,str)){
+              path = mountPath(str);
+              idNum = std::stoi(path[0]);
+              type = std::stoi(path[1]);
 
-
-
-int ActionMenu::update(bool moved,bool attacked){
-    auto& input = InputManager::getInstance();
-    PlayerState result = STANDBY;
-
-    if(moved && !attacked && !done){
-        currentNode = actions["120"];
-        done = true;
-    }
-    else if(attacked && !moved && !done){
-        currentNode = actions["110"];
-        done = true;
-    }
-    else if(!moved && !attacked && !done){
-        currentNode = actions["1"];
-        done = true;
-    }
-
-    if(nextAction == nullptr){
-        nextAction = currentNode;
-    }
-
-    if(input.keyPress(SDLK_UP)){
-        nextAction = currentNode->getNextAction();
-    }
-    else if(input.keyPress(SDLK_DOWN)){
-        nextAction = currentNode->getPrevAction();
-    }
-    else if(input.keyPress(ENTER_KEY)){
-
-        if(currentNode->getId().back() != '0'){
-            if(currentNode->getId() == "11" || currentNode->getId() == "121" || currentNode->getId() == "131"){
-            result = ATTACKING;
-            }
-            else if(currentNode->getId() == "111" || currentNode->getId() == "12"){
-                result = MOVING;
-            }
-            else if(currentNode->getId() == "112" || currentNode->getId() == "13"){
-                result = STAND;
-            }
-
-
-            if(currentNode->getId().size() == 3){
-                currentNode = actions["2"];
-            }else{
-                currentNode = actions[nextAction->getId()+"0"];
-            }
-            nextAction = nullptr;
+              actionMap[idNum]->setType(type);
         }
     }
 
-    return result;
+    file.close();       
 }
 
 void ActionMenu::update(float dt){
-    
+
+}
+
+int ActionMenu::update(){
+
+    auto& input = InputManager::getInstance();
+    int result = Globals::START;
+    bool found = false;
+
+    if(showingNode->getType() != 4){
+        if(input.keyPress(SDLK_DOWN)){
+            showingNode = currentNode->getNextAction();
+        }
+        else if(input.keyPress(SDLK_UP)){
+            showingNode = currentNode->getPrevAction();
+        }
+        else if(input.keyPress(ENTER_KEY)){
+
+            result = showingNode->getType();
+
+            for(auto it = showingNode->getChildren().begin();it != showingNode->getChildren().end();it++){
+                if(it->second->getType() == 0){
+                    currentNode = it->second;
+                    showingNode = it->second;
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                 for(auto it = showingNode->getChildren().begin();it != showingNode->getChildren().end();it++){
+                    if(it->second->getType() == 4){
+                        currentNode = it->second;
+                        showingNode = it->second;
+                        break;
+                    }
+                }
+            }
+
+        }
+    }else{
+        if(input.keyPress(ENTER_KEY)){
+            result = Globals::FINISH;
+        }
+    }
+
+    if(result == Globals::FINISH){
+        currentNode = root;
+        showingNode = root;
+    }
+
+    sp = showingNode->getSprite();
+    return result;
 }
 
 void ActionMenu::render(){
-    nextAction->getSprite()->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY());
+    sp->render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY());
 }
 
 bool ActionMenu::isDead(){
-
+    return false;
 }
 
 void ActionMenu::notifyCollision(GameObject& other){
@@ -160,5 +143,5 @@ void ActionMenu::notifyCollision(GameObject& other){
 }
 
 bool ActionMenu::is(const std::string& type){
-	return type == "ActionMenu";
+    return false;
 }

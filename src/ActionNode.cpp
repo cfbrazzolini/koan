@@ -1,30 +1,16 @@
 #include "ActionNode.h"
 
-ActionNode::ActionNode(std::string id,const std::string& file_name) : 	id(id),
-																		count(0),
-																		sp("img/actionmenu/"+file_name)
+ActionNode::ActionNode(int id,int type,const std::string& file_name) :
+id(id),
+type(type),
+sp("img/actionmenu/"+file_name+".png"),
+currentAction(-1)
 {
-    sp.setScale(1/4);
+    sp.setScale(0.375);
+
 }
 
-void ActionNode::addChild(ActionNode* child){
-	children[child->id] = child;
-}
-
-ActionNode* ActionNode::getChild(std::string id){
-    auto node = children.find(id);
-    if(node != children.end() ){
-		return node->second;
-	}else{
-		return nullptr;
-	}
-}
-
-std::map<std::string,ActionNode*>& ActionNode::getChildren(){
-    return children;
-}
-
-std::string ActionNode::getId(){
+int ActionNode::getId(){
 	return id;
 }
 
@@ -32,46 +18,58 @@ Sprite* ActionNode::getSprite(){
 	return &sp;
 }
 
+std::map<int, ActionNode*>& ActionNode::getChildren(){
+	return children;
+}
+
+void ActionNode::addChild(ActionNode* child){
+	children[child->id] = child;
+}
+
+int ActionNode::getType(){
+	return type;
+}
+
+void ActionNode::setType(int type){
+	this->type = type;
+}
+
 ActionNode* ActionNode::getNextAction(){
-
 	int i = 0;
-	std::string path;
-    ActionNode* action = nullptr;
+	ActionNode* nextAction = nullptr;
 
-	count = ((count + 1) % children.size()) + 1;
+	currentAction = (currentAction+1)%children.size();
 
-    for(auto it = children.begin();it != children.end();it++){
-		i++;
-        if(i==count){
-            action = it->second;
-        }
+	for(auto it = children.begin();it!=children.end();it++){
+		if(i==currentAction){
+			nextAction = it->second;
+			break;
+		}else{
+			i++;
+		}
 	}
 
-    return action;
+	return nextAction;
 }
 
 ActionNode* ActionNode::getPrevAction(){
-
 	int i = 0;
-	std::string path;
-    ActionNode* action = nullptr;
+	ActionNode* nextAction = nullptr;
 
-	count--;
+	currentAction--;
 
-	if(count < 1){
-		count += children.size();
+	if(currentAction < 0){
+		currentAction += children.size();
 	}
 
-    for(auto it = children.begin();it != children.end();it++){
-        i++;
-        if(i==count){
-            action = it->second;
-        }
-    }
+	for(auto it = children.begin();it!=children.end();it++){
+		if(i==currentAction){
+			nextAction = it->second;
+			break;
+		}else{
+			i++;
+		}
+	}
 
-    return action;
-}
-
-void ActionNode::resetCount(){
-	count = 0;
+	return nextAction;
 }

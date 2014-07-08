@@ -1,30 +1,30 @@
 #ifndef ACTIONNODE_H
 #define ACTIONNODE_H
 
-#include <string>
 #include <map>
+#include <string>
 
-#include "Game.h"
 #include "Sprite.h"
 
 class ActionNode
 {
+private:
+    int id;
+    Sprite sp;
+    std::map<int, ActionNode*> children;
+    int type;
+    int currentAction;
+
 public:
-    ActionNode(std::string,const std::string&);
-    void addChild(ActionNode* child);
-    ActionNode* getChild(std::string);
-    std::map<std::string,ActionNode*>& getChildren();
-    std::string getId();
+    ActionNode(int,int,const std::string&);
+    int getId();
+    int getType();
+    void setType(int);
+    Sprite* getSprite();
+    std::map<int, ActionNode*>& getChildren();
+    void addChild(ActionNode*);
     ActionNode* getNextAction();
     ActionNode* getPrevAction();
-    Sprite* getSprite();
-    void resetCount();
-private:
-	Sprite sp;
-	int count;
-	std::string id;
-	std::map<std::string,ActionNode*> children;
-
 };
 
 #endif // ACTIONNODE_H

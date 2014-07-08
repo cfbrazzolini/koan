@@ -2,7 +2,7 @@
 
 // #include "ActionMenu.h"
 
-StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3") {
+StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3"),map(Map::getInstance()) {
     
     float x,y;
     int id = 0;
@@ -11,6 +11,7 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
     std::string str;
     Dice& dice = Dice::getInstance();
     Player* player;
+
 
 
     //music.play(-1);

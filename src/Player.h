@@ -16,6 +16,7 @@
 #include "Dice.h"
 #include "InputManager.h"
 #include "GameObject.h"
+#include "Globals.h"
 #include "Hud.h"
 #include "Item.h"
 #include "Point.h"
