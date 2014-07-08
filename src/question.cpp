@@ -18,10 +18,18 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 						errada3("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0)
 {
 	StateData::correctAnswer = false;
+	StateData::itemRandom = -1;
+
+	for (auto c : StateData::itemArray)
+	    std::cout << c << ' ';
 
 	mestre.setScale(0.19);
     mestreBox.setX(Game::getInstance().getWindowWidth() - mestre.getWidth() - 460);
     mestreBox.setY(Game::getInstance().getWindowHeight() - mestre.getHeight() - 40);
+
+ //    balao.setScale(1.1);
+	// balaoBox.setX(Game::getInstance().getWindowWidth() - balao.getWidth() + 10);
+ //    balaoBox.setY(Game::getInstance().getWindowHeight() - balao.getHeight() - 393);
 
 	balaoBox.setX(Game::getInstance().getWindowWidth() - balao.getWidth() - 20);
     balaoBox.setY(Game::getInstance().getWindowHeight() - balao.getHeight() - 400);
@@ -145,7 +153,6 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	  		getline(file,strErrada3,'\n');
 			
 	  		localResposta = (rand() % 4);
-
 	  		cout << "expressoes" << strCorreta1<<localResposta << endl;
   			if(localResposta == 0){
 				answer = VERDE;
@@ -225,7 +232,6 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	  		getline(file,strErrada3,'\n');
 	  		
 	  		localResposta = (rand() % 4);
-	  		
 	  		cout << "kanji" << strCorreta1 <<localResposta<< endl;
   			if(localResposta == 0){
 				answer = VERDE;
@@ -288,7 +294,6 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	    }
 	    file.close();
 	}
-	cout << answer << endl;
 }
 
 void question::update(float){
@@ -391,42 +396,50 @@ void question::input(){
 	auto& input = InputManager::getInstance();
     Point click;
 
-
     click.setX((float)input.getMouseX() + Camera::pos.getX());
     click.setY((float)input.getMouseY() + Camera::pos.getY());
+
     if(input.keyPress(ESCAPE_KEY) || input.shouldQuit()){
         hasRequestedQuit = true;
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && verdeBox.hasPoint(click)){
         if(answer == VERDE){
         	StateData::correctAnswer = true;
+        	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_VERDE;
+	        StateData::itemRandom = -1;
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && roxoBox.hasPoint(click)){
         if(answer == ROXO){
         	StateData::correctAnswer = true;
+        	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_ROXO;
+	        StateData::itemRandom = -1;
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && vermelhoBox.hasPoint(click)){
         if(answer == VERMELHO){
         	StateData::correctAnswer = true;
+        	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_VERMELHO;
+	        StateData::itemRandom = -1;
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && amareloBox.hasPoint(click)){
         if(answer == AMARELO){
         	StateData::correctAnswer = true;
+        	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_AMARELO;
+	        StateData::itemRandom = -1;
 	    }
     }
 }

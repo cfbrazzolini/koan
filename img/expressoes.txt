@@ -20,17 +20,17 @@ Boa tarde
 Bom dia
 おげんきですか
 Como esta?
-Com licença
+Com licenca
 Me desculpe
 Tchau
 すみません
-Com licença
+Com licenca
 Tchau
 Como esta?
 Boa tarde
 ごめんなさい
 Me desculpe
-Com licença
+Com licenca
 Tchau
 Boa noite
 いってきます
@@ -62,7 +62,7 @@ Usado para a pessoa que vai sair de casa
 Feliz ano novo
 Conto com seus cuidados
 Prazer em conhece-lo
-Feliz aniversário
+Feliz aniversario
 さようなら
 Tchau
 Obrigado
@@ -79,29 +79,29 @@ Obrigado
 Tchau
 Me desculpe
 しつれいします
-Com licença/ Me desculpe
+Com licenca/ Me desculpe
 Obrigado
 Tchau
-Usado antes de fazer uma refeição
+Usado antes de fazer uma refeicao
 いただきます
-Usado antes de fazer uma refeição
-Usado depois de fazer uma refeição
-Com licença/ Me desculpe
+Usado antes de fazer uma refeicao
+Usado depois de fazer uma refeicao
+Com licenca/ Me desculpe
 De nada
 ごちそうさまでした
-Usado depois de fazer uma refeição
+Usado depois de fazer uma refeicao
 De nada
-Usado antes de fazer uma refeição
-Com licença/ Me desculpe
+Usado antes de fazer uma refeicao
+Com licenca/ Me desculpe
 おたんじょうび　おめでとうございます
-Feliz aniversário
+Feliz aniversario
 Feliz ano novo
 Muito Obrigado
-Usado depois de fazer uma refeição
+Usado depois de fazer uma refeicao
 よろしくおねがいします
 Conto com seus cuidados
-Usado antes de fazer uma refeição
-Usado depois de fazer uma refeição
+Usado antes de fazer uma refeicao
+Usado depois de fazer uma refeicao
 Desculpe-me fazer esperar
 おまたせしました
 Desculpe-me fazer esperar
@@ -112,7 +112,7 @@ Bom trabalho
 Bom trabalho
 Conto com seus cuidados
 Bom trabalho
-Usado depois de fazer uma refeição
+Usado depois de fazer uma refeicao
 がんばってください
 De o melhor de si
 Conto com seus cuidados
@@ -129,14 +129,14 @@ Bem vindo
 Bom trabalho
 Desculpe-me fazer esperar
 おかげさまで
-Graças a você/graças a deus
+Gracas a você/gracas a deus
 Desculpe-me fazer esperar
 Usado para a pessoa que voltou para casa
 Bom trabalho
 かんぱい
 Um brinde/ Tim tim
 Bom trabalho
-Graças a você/graças a deus
+Gracas a você/gracas a deus
 Bem vindo
 もしもし
 Alo

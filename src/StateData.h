@@ -15,6 +15,7 @@ public:
     static std::vector<int> playerHp;
     static std::vector<std::string> itemArray;
     static bool correctAnswer;
+    static int itemRandom;
     
 
 };
