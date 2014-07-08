@@ -17,6 +17,8 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 						errada2("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
 						errada3("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0)
 {
+	StateData::correctAnswer = false;
+
 	mestre.setScale(0.19);
     mestreBox.setX(Game::getInstance().getWindowWidth() - mestre.getWidth() - 460);
     mestreBox.setY(Game::getInstance().getWindowHeight() - mestre.getHeight() - 40);
@@ -51,7 +53,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 		// escolhe uma linha do arq grammar
 		std::ifstream file ("img/grammar.txt");
 		value = (rand() % 32);
-    	index = value*5 + 1;cout << file << endl;
+    	index = value*5 + 1;
 	    std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
 	    if(file.is_open()){
 	    	
@@ -63,8 +65,8 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	    	getline(file,strErrada1,'\n');
 	    	getline(file,strErrada2,'\n');
 	  		getline(file,strErrada3,'\n');
-	    	int localResposta = (rand() % 4);
-	    	cout << localResposta << endl;
+	    	localResposta = (rand() % 4);
+	    	cout << "grammar" << strCorreta1<<localResposta << endl;
 			if(localResposta == 0){
 				answer = VERDE;
 			    pergunta.setText(strPergunta);
@@ -109,7 +111,6 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 		    }
 		    if(localResposta == 3){
 				answer = AMARELO;
-				answer = ROXO;
 			    pergunta.setText(strPergunta);
 			    certa.setText(strCorreta1);
 			    errada1.setText(strErrada1);
@@ -130,7 +131,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	if(opcao == 1){
 		std::ifstream file ("img/expressoes.txt");
 		value = (rand() % 29);
-    	index = value*5 + 1;cout << file << endl;
+    	index = value*5 + 1;
     	std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
 	    if(file.is_open()){
 	    	
@@ -142,10 +143,11 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	    	getline(file,strErrada1,'\n');
 	    	getline(file,strErrada2,'\n');
 	  		getline(file,strErrada3,'\n');
+			
+	  		localResposta = (rand() % 4);
 
-	  		int localResposta = (rand() % 4);
-	  		cout << localResposta << endl;
-	  			if(localResposta == 0){
+	  		cout << "expressoes" << strCorreta1<<localResposta << endl;
+  			if(localResposta == 0){
 				answer = VERDE;
 			    pergunta.setText(strPergunta);
 			    certa.setText(strCorreta1);
@@ -189,7 +191,6 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 		    }
 		    if(localResposta == 3){
 				answer = AMARELO;
-				answer = ROXO;
 			    pergunta.setText(strPergunta);
 			    certa.setText(strCorreta1);
 			    errada1.setText(strErrada1);
@@ -210,7 +211,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	if(opcao == 2){
 		std::ifstream file ("img/kanji.txt");
 		value = (rand() % 202);
-    	index = value*5 + 1;cout << file << endl;
+    	index = value*5 + 1;
     	std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
 	    if(file.is_open()){
 	    	
@@ -222,10 +223,11 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	    	getline(file,strErrada1,'\n');
 	    	getline(file,strErrada2,'\n');
 	  		getline(file,strErrada3,'\n');
-
-	  		int localResposta = (rand() % 4);
-	  		cout << localResposta << endl;
-	  			if(localResposta == 0){
+	  		
+	  		localResposta = (rand() % 4);
+	  		
+	  		cout << "kanji" << strCorreta1 <<localResposta<< endl;
+  			if(localResposta == 0){
 				answer = VERDE;
 			    pergunta.setText(strPergunta);
 			    certa.setText(strCorreta1);
@@ -269,7 +271,6 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 		    }
 		    if(localResposta == 3){
 				answer = AMARELO;
-				answer = ROXO;
 			    pergunta.setText(strPergunta);
 			    certa.setText(strCorreta1);
 			    errada1.setText(strErrada1);
@@ -287,11 +288,20 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	    }
 	    file.close();
 	}
-	// answer = VERDE;
+	cout << answer << endl;
 }
 
 void question::update(float){
 	input();
+	if(hasRequestedDelete){
+		errado.clear();
+    	certo.clear();
+    	pergunta.clear();
+    	certa.clear();
+    	errada1.clear();
+    	errada2.clear();
+    	errada3.clear();
+	}
 }
 
 void question::render(){
@@ -305,44 +315,75 @@ void question::render(){
     pAmarelo.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
 
     pergunta.render(balaoBox.getX() - Camera::pos.getX(),balaoBox.getY() - Camera::pos.getY());
-    certa.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
-    errada1.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
-    errada2.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
-    errada3.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
-
+    if(localResposta == 0){
+	    certa.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
+	    errada1.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
+	    errada2.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
+	    errada3.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
+    }
+    if(localResposta == 1){
+    	errada1.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
+	    certa.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
+	    errada2.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
+	    errada3.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
+    }
+    if(localResposta == 2){
+    	errada2.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
+	    errada1.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
+	    certa.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
+	    errada3.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
+    }
+    if(localResposta == 3){
+    	errada2.render(verdeBox.getX() - Camera::pos.getX(),verdeBox.getY() - Camera::pos.getY());
+	    errada1.render(vermelhoBox.getX() - Camera::pos.getX(),vermelhoBox.getY() - Camera::pos.getY());
+	    errada3.render(roxoBox.getX() - Camera::pos.getX(),roxoBox.getY() - Camera::pos.getY());
+	    certa.render(amareloBox.getX() - Camera::pos.getX(),amareloBox.getY() - Camera::pos.getY());
+    }
+    
+    
     if(StateData::correctAnswer == true && answer == VERDE){
+    	i ++;
     	certo.setScale(0.15);
     	certo.render(verdeBox.getX() - Camera::pos.getX() + 120,verdeBox.getY() - Camera::pos.getY() + 40);
     }
     if(StateData::correctAnswer == true && answer == VERMELHO){
+    	i ++;
     	certo.setScale(0.15);
     	certo.render(vermelhoBox.getX() - Camera::pos.getX() + 120,vermelhoBox.getY() - Camera::pos.getY() + 40);
     }
     if(StateData::correctAnswer == true && answer == AMARELO){
+    	i ++;
     	certo.setScale(0.15);
     	certo.render(amareloBox.getX() - Camera::pos.getX() + 120,amareloBox.getY() - Camera::pos.getY() + 40);
     }
     if(StateData::correctAnswer == true && answer == ROXO){
+    	i ++;
     	certo.setScale(0.15);
     	certo.render(roxoBox.getX() - Camera::pos.getX() + 120,roxoBox.getY() - Camera::pos.getY() + 40);
     }
     if(answer == E_VERDE){
+    	i ++;
     	errado.setScale(0.15);
     	errado.render(verdeBox.getX() - Camera::pos.getX() + 120,verdeBox.getY() - Camera::pos.getY() + 40);
     }
     if(answer == E_VERMELHO){
+    	i ++;
     	errado.setScale(0.15);
     	errado.render(vermelhoBox.getX() - Camera::pos.getX() + 120,vermelhoBox.getY() - Camera::pos.getY() + 40);
     }
     if(answer == E_AMARELO){
+    	i ++;
     	errado.setScale(0.15);
     	errado.render(amareloBox.getX() - Camera::pos.getX() + 120,amareloBox.getY() - Camera::pos.getY() + 40);
     }
     if(answer == E_ROXO){
+    	i ++;
     	errado.setScale(0.15);
     	errado.render(roxoBox.getX() - Camera::pos.getX() + 120,roxoBox.getY() - Camera::pos.getY() + 40);
     }
-
+    if(i >= 10){
+    	hasRequestedDelete = true;    	
+    }
 }
 
 void question::input(){
@@ -358,43 +399,34 @@ void question::input(){
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && verdeBox.hasPoint(click)){
         if(answer == VERDE){
-        	cout << "verde mesmo" << endl;
         	StateData::correctAnswer = true;
-        	hasRequestedDelete = true;
         }
         else{
 	        answer = E_VERDE;
-	        hasRequestedDelete = true;
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && roxoBox.hasPoint(click)){
         if(answer == ROXO){
-        	cout << "roxo mesmo" << endl;
         	StateData::correctAnswer = true;
-        	hasRequestedDelete = true;
         }
         else{
 	        answer = E_ROXO;
-	        hasRequestedDelete = true;
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && vermelhoBox.hasPoint(click)){
         if(answer == VERMELHO){
-        	cout << "vermelho mesmo" << endl;
         	StateData::correctAnswer = true;
-        	hasRequestedDelete = true;
         }
         else{
-	        answer = E_VERMELHO;hasRequestedDelete = true;
+	        answer = E_VERMELHO;
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && amareloBox.hasPoint(click)){
         if(answer == AMARELO){
-        	cout << "amarelo mesmo" << endl;
-        	StateData::correctAnswer = true;hasRequestedDelete = true;
+        	StateData::correctAnswer = true;
         }
         else{
-	        answer = E_AMARELO;hasRequestedDelete = true;
+	        answer = E_AMARELO;
 	    }
     }
 }

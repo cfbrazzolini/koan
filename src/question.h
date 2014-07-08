@@ -53,8 +53,9 @@ private:
 	enum Answer {VERDE, ROXO, AMARELO, VERMELHO, E_VERDE, E_ROXO, E_AMARELO, E_VERMELHO};
 	Answer answer;
 
-	//BlockTileSet tileSet;
-	//TileMap tileMap;
+	int i = 0;
+	int localResposta;
+	
     Music music;
     Text pergunta;
     Text certa;
