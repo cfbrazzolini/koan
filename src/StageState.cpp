@@ -39,9 +39,9 @@ StageState::StageState() : bg("img/cenario/mapanovo2.png"),music("audio/tituloPr
 
     StateData::itemArray.emplace_back("Sword");
     StateData::itemArray.emplace_back("Shuriken");
-    StateData::itemArray.emplace_back("Trap");
+    //StateData::itemArray.emplace_back("Trap");
     StateData::itemArray.emplace_back("Bow");
-    StateData::itemArray.emplace_back("Helmet");
+    //StateData::itemArray.emplace_back("Helmet");
 
 
 

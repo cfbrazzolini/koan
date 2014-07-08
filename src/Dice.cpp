@@ -1,7 +1,7 @@
 #include "Dice.h"
 
 Dice::Dice(float x,float y) : 
-sp("img/cube-dice.jpg"), 
+sp("img/Dado/dado.png",6), 
 numero("font/Call me maybe.ttf",34,Text::TEXT_SOLID,std::to_string(value),SDL_Color(),0,0)
 {
 	srand (time(NULL));
@@ -23,11 +23,13 @@ int Dice::getValue(){
 
 void Dice::setValue(){
 	value = (rand() % 6) + 1;
+	sp.setFrame(value-1);
 }
 
 void Dice::update(float dt){
 	// printf("%d\n", valu/e);
 	numero.setText(std::to_string(value));
+	sp.setFrame(value-1);
 }
  
 void Dice::render(){
@@ -41,7 +43,7 @@ void Dice::render(){
     }else{
     	numero.setPos(StateData::turn*(Game::getInstance().getWindowWidth()-sp.getWidth()/2) - Camera::pos.getX(),Game::getInstance().getWindowHeight()/2 - Camera::pos.getY(),true,true);
     }
-	numero.render();
+	//numero.render();
  }
 
 bool Dice::isDead(){
