@@ -20,6 +20,7 @@
 #include "Helmet.h"
 #include "Hud.h"
 #include "Item.h"
+#include "Music.h"
 #include "Point.h"
 #include "question.h"
 #include "Shuriken.h"
@@ -82,6 +83,8 @@ private:
 	int movementsRemaining;
     std::string color;
     bool showActionMenu;
+
+    Music music;
 };
 
 #endif // PLAYER_H

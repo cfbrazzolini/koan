@@ -24,6 +24,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	StateData::itemRandom = -1;
 	StateData::pause = true;
 
+	
 	escolha_opcao.play(1);
 
 	mestre.setScale(0.19);
@@ -66,7 +67,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
     int opcao = (rand() % 3);
     int value = 0, index = 0;
 	if(opcao == 0){
-		cout << opcao << '!' <<endl;
+
 		// escolhe uma linha do arq grammar
 		std::ifstream file ("img/grammar.txt");
 		value = (rand() % 32);
@@ -397,8 +398,8 @@ void question::render(){
     	errado.render(roxoBox.getX() - Camera::pos.getX() + 150,roxoBox.getY() - Camera::pos.getY() + 10);
     }
     if(i >= 10){
-    	hasRequestedDelete = true;  
-    	StateData::pause = false;  	
+    	StateData::pause = false;  
+    	hasRequestedDelete = true;  	
     }
 }
 

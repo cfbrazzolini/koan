@@ -21,6 +21,7 @@ public:
 
     void pause();
     void resume();
+    int isPaused();
 private:
     std::string file;
 	Mix_Music* music;

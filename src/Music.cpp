@@ -1,5 +1,7 @@
 #include "Music.h"
 
+#include <ostream>
+using namespace std;
 std::unordered_map<std::string,Mix_Music*>  Music::assetTable;
 
 Music::Music()
@@ -47,9 +49,16 @@ void Music::clear(){
 }
 
 void Music::pause(){
+    Mix_FadingMusic();
     Mix_PauseMusic();
 }
 
 void Music::resume(){
-    Mix_ResumeMusic();
+    if(Mix_PausedMusic() == 1){
+        Mix_ResumeMusic();
+    }
+}
+
+int Music::isPaused(){
+    return(Mix_PausedMusic());
 }

@@ -1,5 +1,6 @@
 #include "Player.h"
-
+#include <ostream>
+using namespace std;
 Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const std::string& color) :
     spFrente("img/movimento/"+ color +"Frente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
     spDireita("img/movimento/"+ color +"Direita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
@@ -16,8 +17,12 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     hp(PLAYER_HP),
     id(id),
     color(color),
-    actionMenu(Game::getInstance().getWindowWidth()*id,Game::getInstance().getWindowHeight())
+    actionMenu(Game::getInstance().getWindowWidth()*id,Game::getInstance().getWindowHeight()),
+    music("audio/fogo.mp3")
 {
+    music.play(1);
+    StateData::pause = false;
+
     sp = &spFrente;
     sp->setScale(0.2);
     rotation = 0;
@@ -60,6 +65,13 @@ void Player::update(float dt){
 
     showActionMenu = false;
 
+    if(StateData::pause == true){
+        music.pause();
+    }
+    if(StateData::pause == false){
+        cout << "pq não funfa?" << endl;
+        music.resume();
+    }
 
     if(StateData::turn == id){
 
