@@ -442,6 +442,6 @@ void Player::hit(int value){
 
 
 Player::~Player(){
-
+    music.stop();
     itemArray.clear();
 }

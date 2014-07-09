@@ -67,7 +67,6 @@ int Music::isPaused(){
 }
 
 void Music::open(const std::string& file, int times){
-    ;
     if(assetTableChannel.find(file) == assetTableChannel.end()){
         if((sound=Mix_LoadWAV(file.c_str()))==nullptr){
             printf("nao foi possivel carregar o channel %s\n", file.c_str());
