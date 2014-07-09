@@ -34,30 +34,30 @@ Com licenca
 Tchau
 Boa noite
 いってきます
-Usado ao sair de casa
-Usado para a pessoa que vai sair de casa
-Usado ao voltar para casa
-Usado para a pessoa que voltou para casa
+Ao sair de casa
+Para pessoa que saira de casa
+Ao voltar para casa
+Para pessoa que voltou para casa
 いってらっしゃい
-Usado para a pessoa que vai sair de casa
-Usado quando entra na casa de outra pessoa
-Usado para a pessoa que voltou para casa
-Usado ao voltar para casa
+Para pessoa que saira de casa
+Ao entrar na casa de outra pessoa
+Para pessoa que voltou para casa
+Ao voltar para casa
 ただいま
-Usado ao voltar para casa
-Usado para a pessoa que voltou para casa
-Usado quando entra na casa de outra pessoa
-Usado para a pessoa que vai sair de casa
+Ao voltar para casa
+Para pessoa que voltou para casa
+Ao entrar na casa de outra pessoa
+Para pessoa que saira de casa
 おかえりなさい
-Usado para a pessoa que voltou para casa
-Usado quando entra na casa de outra pessoa
-Usado ao sair de casa
-Usado ao voltar para casa
+Para pessoa que voltou para casa
+Ao entrar na casa de outra pessoa
+Ao sair de casa
+Ao voltar para casa
 おじゃまします
-Usado quando entra na casa de outra pessoa
-Usado ao sair de casa
-Usado para a pessoa que voltou para casa
-Usado para a pessoa que vai sair de casa
+Ao entrar na casa de outra pessoa
+Ao sair de casa
+Para a pessoa que voltou para casa
+Para pessoa que saira de casa
 あけまして　おめでとう
 Feliz ano novo
 Conto com seus cuidados
@@ -117,7 +117,7 @@ Usado depois de fazer uma refeicao
 De o melhor de si
 Conto com seus cuidados
 Bom trabalho
-Usado para a pessoa que voltou para casa
+Para a pessoa que voltou para casa
 ようこそ
 Bem vindo
 Bom dia
@@ -131,7 +131,7 @@ Desculpe-me fazer esperar
 おかげさまで
 Gracas a voce/gracas a deus
 Desculpe-me fazer esperar
-Usado para a pessoa que voltou para casa
+Para a pessoa que voltou para casa
 Bom trabalho
 かんぱい
 Um brinde/ Tim tim
