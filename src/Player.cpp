@@ -152,7 +152,7 @@ void Player::update(float dt){
                     /*< Calcula casas alcancaveis e muda suas cores */
 
 
-                    paths = stoneArray[currentPos]->getPaths(2);
+                    paths = stoneArray[currentPos]->getPaths(dice.getValue());
 
                     validStones.clear();
                     //validStones.emplace_back(currentPos);
