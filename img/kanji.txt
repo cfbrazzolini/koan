@@ -95,7 +95,7 @@ Vale
 Samurai
 空
 Ceu
-Ceu (ParaIso)
+Ceu (Paraiso)
 Terra
 Vale
 田
@@ -532,7 +532,7 @@ Inverno
 Outono
 Verao
 Primavera
-Outono
+Inverno
 冬
 Inverno
 Outono

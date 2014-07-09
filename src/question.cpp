@@ -11,11 +11,11 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 						pAmarelo("img/perguntas/amarelo.png"),
 						certo("img/perguntas/certo.png"),
 						errado("img/perguntas/errado.png"),
-						pergunta("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
-						certa("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
-						errada1("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
-						errada2("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
-						errada3("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						pergunta("font/07LogoTypeGothic7.ttf",20,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						certa("font/07LogoTypeGothic7.ttf",20,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						errada1("font/07LogoTypeGothic7.ttf",20,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						errada2("font/07LogoTypeGothic7.ttf",20,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
+						errada3("font/07LogoTypeGothic7.ttf",20,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
 						escolha_opcao("audio/escolha_opcao.ogg", 0),
 						resposta_certa("audio/resposta_certa.ogg", 0),
 						resposta_errada("audio/resposta_errada.ogg", 0)
@@ -66,6 +66,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
     //opcao e para tipo de pergunta, ta ok
     int opcao = (rand() % 3);
     int value = 0, index = 0;
+
 	if(opcao == 0){
 
 		// escolhe uma linha do arq grammar
@@ -94,7 +95,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 +110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 10,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    certa.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
@@ -107,7 +108,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada1.setText(strErrada1);
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 10,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    
 			    errada1.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 				certa.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
@@ -122,7 +123,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 10,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    certa.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
@@ -136,7 +137,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 10,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    errada3.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
@@ -215,7 +216,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 10,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    errada3.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
@@ -252,7 +253,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 20,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    certa.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    errada2.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
@@ -265,7 +266,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada1.setText(strErrada1);
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 20,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    
 			    errada1.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 				certa.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
@@ -280,7 +281,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 20,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    certa.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
@@ -294,7 +295,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 			    errada2.setText(strErrada2);
 			    errada3.setText(strErrada3);
 
-				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 110,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
+				pergunta.setPos((balaoBox.getX() - Camera::pos.getX())/2 + 20,(balaoBox.getY() - Camera::pos.getY())/2 + 120,true,true);
 			    errada2.setPos((verdeBox.getX() - Camera::pos.getX())/2 - 50,(verdeBox.getY() - Camera::pos.getY())/2 - 40,true,true);
 			    errada1.setPos((vermelhoBox.getX() - Camera::pos.getX())/2 - 50,(vermelhoBox.getY() - Camera::pos.getY())/2 - 80,true,true);
 			    errada3.setPos((roxoBox.getX() - Camera::pos.getX())/2 - 50,(roxoBox.getY() - Camera::pos.getY())/2 - 150,true,true);
