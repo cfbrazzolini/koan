@@ -104,7 +104,7 @@ Terra
 Janela
 Quadrado
 天
-Ceu (ParaIso)
+Ceu (Paraiso)
 Ceu
 Bola
 Rei
@@ -251,12 +251,12 @@ Terra
 玉
 Bola
 Rei
-Ceu (ParaIso)
+Ceu (Paraiso)
 Ceu
 王
 Rei
 Bola
-Ceu (ParaIso)
+Ceu (Paraiso)
 Ceu
 石
 Pedra

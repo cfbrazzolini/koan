@@ -31,7 +31,7 @@ StageState::StageState() :  bg("img/cenario/mapanovo2.png"),
     StateData::playerHp.emplace_back(20);
     objectArray.emplace_back(new Hud(0,0,0,player1));
 
-    player2 = new Player(1,4,stoneArray,"laranja");
+    player2 = new Player(1,15,stoneArray,"laranja");
     
     objectArray.emplace_back(player2);
     playerArray.emplace_back(player2);

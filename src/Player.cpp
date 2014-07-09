@@ -66,6 +66,7 @@ void Player::update(float dt){
     std::vector<Path*> paths;
     std::string pathVector,str,itemName;
     std::size_t found,last_found;
+    bool hasWeapon = false;
 
     int damage,range;
 
@@ -335,7 +336,16 @@ void Player::update(float dt){
                     attacked = true;
                     playerState = STANDBY;
                 }
-                else if(input.mousePress(SDL_BUTTON_LEFT)){
+                else{
+                     for(i=0;i<itemArray.size();i++){
+                        if(itemArray[i]->is("Arma")){
+                            hasWeapon = true;
+                        }
+                    }
+
+                }
+
+                if(hasWeapon && input.mousePress(SDL_BUTTON_LEFT)){
                     click.setX((float)input.getMouseX() + Camera::pos.getX());
                     click.setY((float)input.getMouseY() + Camera::pos.getY());
 

@@ -6,7 +6,7 @@ Bow::Bow() : used(false)
 	sp.setScale(0.15);
 	box.setW(sp.getWidth());
 	box.setH(sp.getHeight());
-	uses = 5;
+	uses = 10;
 	reach = 6;
 	damage = 2;
 	rechargeable = true;
