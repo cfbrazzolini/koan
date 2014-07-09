@@ -47,7 +47,7 @@ bool Sword::is(const std::string& type){
 	return type == "Sword" || type == "Arma";
 }
 
-void Sword::use(){
+void Sword::use(int value){
     uses--;
 	used = true;
 }

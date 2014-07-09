@@ -17,6 +17,7 @@
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Globals.h"
+#include "Helmet.h"
 #include "Hud.h"
 #include "Item.h"
 #include "Point.h"
@@ -51,7 +52,7 @@ public:
     bool is(const std::string&);
     int getId();
     int getHp();
-    void decHp(int value){hp-=value;}
+    void hit(int);
     std::vector<Item*>* getItens();
     std::string& getColor();
     void setPlayerArray(std::vector<Player*>*);

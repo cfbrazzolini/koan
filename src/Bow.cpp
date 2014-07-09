@@ -45,7 +45,7 @@ bool Bow::is(const std::string& type){
 	return type == "Bow" || type == "Arma";
 }
 
-void Bow::use(){
+void Bow::use(int value){
     uses--;
 	used = true;
 }

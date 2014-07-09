@@ -32,7 +32,7 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
         
         itemArray.emplace_back(new Sword());
         itemArray.emplace_back(new Bow());
-        itemArray.emplace_back(new Shuriken());
+        itemArray.emplace_back(new Helmet());
         
     }
 
@@ -300,7 +300,7 @@ void Player::update(float dt){
                                 for(auto j=0;j<paths.size();j++){
                                      if(paths[j]->getTarget() == playerArray->at((id+1)%2)->currentPos){
                                         
-                                        playerArray->at((id+1)%2)->decHp(damage);
+                                        playerArray->at((id+1)%2)->hit(damage);
                                         itemArray[i]->use();
                                         used = true;
                                         attacked = true;
@@ -380,4 +380,24 @@ std::string& Player::getColor(){
 
 void Player::setPlayerArray(std::vector<Player*>* playerArray){
     this->playerArray = playerArray;
+}
+
+void Player::hit(int value){
+
+    int i,defense;
+
+    for(i=0;i<itemArray.size();i++){
+        if(itemArray[i]->is("Armor")){
+            defense = itemArray[i]->getDamage();
+            
+            itemArray[i]->use(value);
+            value = value - defense;
+            if(value <= 0){
+                value = 0;
+                break;
+            }
+        }
+    }
+
+    hp -= value;
 }

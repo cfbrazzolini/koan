@@ -13,7 +13,7 @@ public:
     bool isDead();
     void notifyCollision(GameObject&);
     bool is(const std::string&);
-    void use();
+    void use(int=0);
 private:
 	bool used;
 };

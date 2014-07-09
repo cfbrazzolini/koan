@@ -20,7 +20,7 @@ public:
     int getDamage();
     bool isRechargeable();
     void setPos(float,float);
-    virtual void use() = 0;
+    virtual void use(int=0) = 0;
 protected:
 	int uses;
 	int reach;

@@ -46,7 +46,7 @@ bool Shuriken::is(const std::string& type){
 	return type == "Shuriken" || type == "Arma";
 }
 
-void Shuriken::use(){
+void Shuriken::use(int value){
     uses--;
 	used = true;
 }
