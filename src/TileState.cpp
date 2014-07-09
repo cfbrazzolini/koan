@@ -5,9 +5,11 @@ TileState::TileState() :    bg("img/menu/menu_background.png"),
                             /*text("font/Call me maybe.ttf",34,Text::TEXT_SOLID,"Press space to start",SDL_Color(),300,500),*/
                             /*show(true),*/
                             iniciarBg("img/menu/iniciar.png"),
-                            historicoBg("img/menu/historico.png")
+                            historicoBg("img/menu/historico.png"),
+                            music("audio/tituloPrincipal.mp3")
 {
 	//text.setPos(Game::getInstance().getWindowWidth()/2,Game::getInstance().getWindowHeight()*5/6,true,true);
+    music.play(1);
     iniciarBg.setScale(0.2);
     historicoBg.setScale(0.2);
     iniciarBox.setX(Game::getInstance().getWindowWidth()/2 - iniciarBg.getWidth()/2);
@@ -62,6 +64,7 @@ void TileState::input(){
         Game::getInstance().push(new StageState());
     }*/
     if(input.mousePress(SDL_BUTTON_LEFT) && iniciarBox.hasPoint(click)){
+        music.stop();
         Game::getInstance().push(new StageState());
     }
 }

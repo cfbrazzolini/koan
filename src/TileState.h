@@ -4,6 +4,7 @@
 #include "Rect.h"
 #include "Camera.h"
 #include "InputManager.h"
+#include "Music.h"
 #include "Sprite.h"
 #include "StageState.h"
 #include "State.h"
@@ -30,6 +31,7 @@ private:
 	Rect iniciarBox;
 	Rect historicoBox;
 	/*Text text;*/
+	Music music;
 	bool show;
 };
 

@@ -18,6 +18,9 @@ public:
     void open(const std::string&);
     bool isOpen();
     static void clear();
+
+    void pause();
+    void resume();
 private:
     std::string file;
 	Mix_Music* music;

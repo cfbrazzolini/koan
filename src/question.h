@@ -56,7 +56,10 @@ private:
 	int i = 0;
 	int localResposta;
 	
-    Music music;
+    Music escolha_opcao;
+    Music resposta_certa;
+    Music resposta_errada;
+
     Text pergunta;
     Text certa;
     Text errada1;
