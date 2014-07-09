@@ -6,3 +6,4 @@ std::vector<std::string> StateData::itemArray;
 
 bool StateData::correctAnswer = false;
 int StateData::itemRandom = -1;
+bool StateData::pause = false;

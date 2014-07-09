@@ -16,6 +16,7 @@ public:
     static std::vector<std::string> itemArray;
     static bool correctAnswer;
     static int itemRandom;
+    bool pause;
     
 
 };

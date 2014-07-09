@@ -18,10 +18,11 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 						errada3("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
 						escolha_opcao("audio/escolha_opcao.ogg"),
 						resposta_certa("audio/resposta_certa.ogg"),
-						resposta_errada("audioresposta_erradaogg")
+						resposta_errada("audio/resposta_errada.ogg")
 {
 	StateData::correctAnswer = false;
 	StateData::itemRandom = -1;
+	StateData::pause = true;
 
 	escolha_opcao.play(1);
 
@@ -358,45 +359,46 @@ void question::render(){
     if(StateData::correctAnswer == true && answer == VERDE){
     	i ++;
     	certo.setScale(0.15);
-    	certo.render(verdeBox.getX() - Camera::pos.getX() + 120,verdeBox.getY() - Camera::pos.getY() + 40);
+    	certo.render(verdeBox.getX() - Camera::pos.getX() + 150,verdeBox.getY() - Camera::pos.getY() + 10);
     }
     if(StateData::correctAnswer == true && answer == VERMELHO){
     	i ++;
     	certo.setScale(0.15);
-    	certo.render(vermelhoBox.getX() - Camera::pos.getX() + 120,vermelhoBox.getY() - Camera::pos.getY() + 40);
+    	certo.render(vermelhoBox.getX() - Camera::pos.getX() + 150,vermelhoBox.getY() - Camera::pos.getY() + 10);
     }
     if(StateData::correctAnswer == true && answer == AMARELO){
     	i ++;
     	certo.setScale(0.15);
-    	certo.render(amareloBox.getX() - Camera::pos.getX() + 120,amareloBox.getY() - Camera::pos.getY() + 40);
+    	certo.render(amareloBox.getX() - Camera::pos.getX() + 150,amareloBox.getY() - Camera::pos.getY() + 10);
     }
     if(StateData::correctAnswer == true && answer == ROXO){
     	i ++;
     	certo.setScale(0.15);
-    	certo.render(roxoBox.getX() - Camera::pos.getX() + 120,roxoBox.getY() - Camera::pos.getY() + 40);
+    	certo.render(roxoBox.getX() - Camera::pos.getX() + 150,roxoBox.getY() - Camera::pos.getY() + 10);
     }
     if(answer == E_VERDE){
     	i ++;
     	errado.setScale(0.15);
-    	errado.render(verdeBox.getX() - Camera::pos.getX() + 120,verdeBox.getY() - Camera::pos.getY() + 40);
+    	errado.render(verdeBox.getX() - Camera::pos.getX() + 150,verdeBox.getY() - Camera::pos.getY() + 10);
     }
     if(answer == E_VERMELHO){
     	i ++;
     	errado.setScale(0.15);
-    	errado.render(vermelhoBox.getX() - Camera::pos.getX() + 120,vermelhoBox.getY() - Camera::pos.getY() + 40);
+    	errado.render(vermelhoBox.getX() - Camera::pos.getX() + 150,vermelhoBox.getY() - Camera::pos.getY() + 10);
     }
     if(answer == E_AMARELO){
     	i ++;
     	errado.setScale(0.15);
-    	errado.render(amareloBox.getX() - Camera::pos.getX() + 120,amareloBox.getY() - Camera::pos.getY() + 40);
+    	errado.render(amareloBox.getX() - Camera::pos.getX() + 150,amareloBox.getY() - Camera::pos.getY() + 10);
     }
     if(answer == E_ROXO){
     	i ++;
     	errado.setScale(0.15);
-    	errado.render(roxoBox.getX() - Camera::pos.getX() + 120,roxoBox.getY() - Camera::pos.getY() + 40);
+    	errado.render(roxoBox.getX() - Camera::pos.getX() + 150,roxoBox.getY() - Camera::pos.getY() + 10);
     }
     if(i >= 10){
-    	hasRequestedDelete = true;    	
+    	hasRequestedDelete = true;  
+    	StateData::pause = false;  	
     }
 }
 
