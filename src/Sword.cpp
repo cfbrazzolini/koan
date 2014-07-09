@@ -8,7 +8,7 @@ Sword::Sword() : used(false)
 	box.setH(sp.getHeight());
 	uses = 3;
 	reach = 2;
-	damage = 50;
+	damage = 5;
 	rechargeable = false;
 }
 

@@ -34,6 +34,7 @@
 #define PLAYER_FRAME_COUNT 8
 #define PLAYER_FRAME_TIME 0.1
 #define PLAYER_HP 20
+#define PLAYER_ITEM_LIMIT 3
 #define PLAYER_SPEED 100
 
 

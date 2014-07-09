@@ -122,6 +122,10 @@ std::vector<Path*> Stone::getPaths(int distance,bool all){
     int i;
     std::vector<Path*> validPaths;
 
+    if(all){
+         validPaths.emplace_back(new Path(id,0,""));
+    }
+
     for(i=0;i<pathVector.size();i++){
         if(!all && pathVector[i]->getDistance() == distance){
             validPaths.emplace_back(pathVector[i]);

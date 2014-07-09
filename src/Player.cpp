@@ -41,9 +41,9 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
 
     if(true){
         
-        itemArray.emplace_back(new Sword());
-        itemArray.emplace_back(new Bow());
-        itemArray.emplace_back(new Helmet());
+        //itemArray.emplace_back(new Sword());
+        //itemArray.emplace_back(new Bow());
+        //itemArray.emplace_back(new Helmet());
         
     }
 
@@ -64,7 +64,7 @@ void Player::update(float dt){
     bool direction,done=false,alignment=false,used=false;
     TARGET_T target;
     std::vector<Path*> paths;
-    std::string pathVector,str;
+    std::string pathVector,str,itemName;
     std::size_t found,last_found;
 
     int damage,range;
@@ -78,6 +78,33 @@ void Player::update(float dt){
         cout << "pause" << endl;
 
     if(StateData::turn == id){
+
+
+        if(StateData::correctAnswer && StateData::itemRandom >= 0){
+            itemName = StateData::itemArray[StateData::itemRandom];
+
+            if(itemArray.size() < PLAYER_ITEM_LIMIT){
+                
+                if(itemName == "Sword"){
+                    itemArray.emplace_back(new Sword());
+                }
+                else if(itemName == "Helmet"){
+                    itemArray.emplace_back(new Helmet());
+                }
+                else if(itemName == "Shuriken"){
+                    itemArray.emplace_back(new Shuriken());
+                }
+                else if(itemName == "Bow"){
+                    itemArray.emplace_back(new Bow());
+                }               
+            }else{
+
+            }
+
+            StateData::itemRandom = -1;
+            StateData::correctAnswer = false;
+
+        }
 
         switch(playerState){
 
@@ -125,7 +152,7 @@ void Player::update(float dt){
                     /*< Calcula casas alcancaveis e muda suas cores */
 
 
-                    paths = stoneArray[currentPos]->getPaths(dice.getValue());
+                    paths = stoneArray[currentPos]->getPaths(2);
 
                     validStones.clear();
                     //validStones.emplace_back(currentPos);
@@ -304,7 +331,11 @@ void Player::update(float dt){
                 attacked = true;
                 playerState = STANDBY;*/
 
-                if(input.mousePress(SDL_BUTTON_LEFT)){
+                if(itemArray.size() == 0){
+                    attacked = true;
+                    playerState = STANDBY;
+                }
+                else if(input.mousePress(SDL_BUTTON_LEFT)){
                     click.setX((float)input.getMouseX() + Camera::pos.getX());
                     click.setY((float)input.getMouseY() + Camera::pos.getY());
 
