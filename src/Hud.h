@@ -14,6 +14,7 @@ class Hud : public GameObject
 {
 public:
     Hud(float,float,int,GameObject*);
+    ~Hud();
     void update(float);
     void render();
     bool isDead();

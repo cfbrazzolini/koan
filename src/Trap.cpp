@@ -4,6 +4,8 @@ Trap::Trap()
 {
 	sp.open("img/armas/armadilha/armadilha.png");
 	sp.setScale(0.15);
+	box.setW(sp.getWidth());
+	box.setH(sp.getHeight());
 	uses = 1;
 	reach = 0;
 	damage = 3;

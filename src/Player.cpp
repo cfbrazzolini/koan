@@ -124,7 +124,7 @@ void Player::update(float dt){
                     paths = stoneArray[currentPos]->getPaths(dice.getValue());
 
                     validStones.clear();
-                    validStones.emplace_back(currentPos);
+                    //validStones.emplace_back(currentPos);
                     for(i=0;i<paths.size();i++){
                          validStones.emplace_back(paths[i]->getTarget());
                     }
@@ -359,6 +359,10 @@ void Player::render(){
     if(showActionMenu){
         actionMenu.render();
     }
+
+    for(auto i=0;i<itemArray.size();i++){
+        itemArray[i]->render();
+    }
 }
 
 bool Player::isDead(){
@@ -415,4 +419,10 @@ void Player::hit(int value){
     if(hp < 0){
         hp = 0;
     }
+}
+
+
+Player::~Player(){
+
+    itemArray.clear();
 }
