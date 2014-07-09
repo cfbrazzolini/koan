@@ -229,7 +229,9 @@ void Player::update(float dt){
                     if(box.getCenter().computeDistance(target.pos) < 5){
 
                         /*< Chegou em uma casa */
-
+                        music.pause();
+                        salto.playChannel(1);
+                        music.resume();
                         taskQueue.pop();
                         alignment = false;
                         currentPos = target.id;
@@ -237,7 +239,6 @@ void Player::update(float dt){
                         sp->restartTimer();
                         sp->setFrame(0);
                         sp->update(0);
-
                         if(!taskQueue.empty()){
 
                             /*< Nao e a ultima casa */
@@ -312,15 +313,7 @@ void Player::update(float dt){
                             if(itemArray[i]->is("Arma")){
                                 damage = itemArray[i]->getDamage();
                                 range = itemArray[i]->getReach();
-                                if(itemArray[i]->is("Bow")){
-                                    arco.playChannel(1);
-                                }
-                                else if(itemArray[i]->is("Sword")){
-                                    espada.playChannel(1);
-                                }
-                                else if(itemArray[i]->is("Shuriken")){
-                                    shuriken.playChannel(1);
-                                }
+                                
 
                                 paths = stoneArray[currentPos]->getPaths(range,true);
 
@@ -332,6 +325,17 @@ void Player::update(float dt){
                                         used = true;
                                         attacked = true;
                                         playerState = STANDBY;
+
+                                        if(itemArray[i]->is("Bow")){
+                                            arco.playChannel(1);
+                                        }
+                                        else if(itemArray[i]->is("Sword")){
+                                            espada.playChannel(1);
+                                        }
+                                        else if(itemArray[i]->is("Shuriken")){
+                                            shuriken.playChannel(1);
+                                        }
+
                                         break;
                                      }
                                 }

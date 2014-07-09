@@ -228,7 +228,7 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 	}
 	if(opcao == 2){
 		std::ifstream file ("img/kanji.txt");
-		value = (rand() % 202);
+		value = (rand() % 144);
     	index = value*5 + 1;
     	std::string strPergunta, strCorreta1, strErrada1, strErrada2, strErrada3;
 	    if(file.is_open()){

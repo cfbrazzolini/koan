@@ -10,12 +10,12 @@ Boa noite antes de dormir
 Boa noite
 こんばんは
 Boa noite
-Boa noite antes de dormir
 Boa tarde
 Bom dia
+Boa noite antes de dormir
 おやすみなさい
 Boa noite antes de dormir
-Boa noite 
+Boa noite
 Boa tarde
 Bom dia
 おげんきですか
@@ -143,3 +143,4 @@ Alo
 Bem vindo
 Bom trabalho
 Bom dia
+

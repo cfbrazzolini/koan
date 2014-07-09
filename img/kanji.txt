@@ -44,19 +44,19 @@ Grande
 Pouco
 Fino
 月
-Mês 
+Mes 
 Dia
 Ano
 Semana
 日
 Dia
 Ano
-Mês 
+Mes 
 Semana
 年
 Ano
 Dia
-Mês 
+Mes 
 Semana
 木
 Arvore
@@ -75,13 +75,13 @@ Bosque
 Capim
 早
 Cedo
-Rápido
+Rapido
 Lento
 Tarde
 山
 Montanha
 Rio
-Vulcão
+Vulcao
 Vale
 川
 Rio
@@ -94,8 +94,8 @@ Montanha
 Vale
 Samurai
 空
-Céu
-Céu (Paraíso)
+Ceu
+Ceu (ParaIso)
 Terra
 Vale
 田
@@ -104,8 +104,8 @@ Terra
 Janela
 Quadrado
 天
-Céu (Paraíso)
-Céu
+Ceu (ParaIso)
+Ceu
 Bola
 Rei
 生
@@ -146,15 +146,15 @@ Pouco
 女
 Mulher
 Homem
-Criança
+Crianca
 Velho
 男
 Homem
 Mulher
 Arroizal
-Criança
+Crianca
 子
-Criança
+Crianca
 Estudo
 Velho
 Homem
@@ -162,31 +162,31 @@ Homem
 Olho
 Orelha
 Boca
-Mão
+Mao
 耳
 Orelha
 Olho
-Mão
+Mao
 Boca
 口
 Boca
 Orelha
 Olho
-Mão
+Mao
 手
-Mão
+Mao
 Orelha
 Olho
 Boca
 足
-Pé
-Mão
-Pescoço
+Pe
+Mao
+Pescoco
 Boca
 見
 Ver
 Olho
-Pé
+Pe
 Comprar
 音
 Som
@@ -194,7 +194,7 @@ Ouvir
 Dia
 Escuro
 力
-Força
+Forca
 Espada
 Homem
 Som
@@ -225,7 +225,7 @@ Caderno
 10
 学
 Estudo
-Criança
+Crianca
 Homem
 Mulher
 村
@@ -236,28 +236,28 @@ Cidade
 正
 Correto
 Errado
-Fácil
-Difícil
+Facil
+DifIcil
 水
-Água
+agua
 Fogo
 Arvore
 Madeira
 火
 Fogo
-Água
+agua
 Pessoa
 Terra 
 玉
 Bola
 Rei
-Céu (Paraíso)
-Céu
+Ceu (ParaIso)
+Ceu
 王
 Rei
 Bola
-Céu (Paraíso)
-Céu
+Ceu (ParaIso)
+Ceu
 石
 Pedra
 Direta
@@ -282,7 +282,7 @@ Cobre
 Carro
 Arroizal
 Trem
-Plantação
+Plantacao
 金
 Ouro
 Cobre
@@ -362,7 +362,7 @@ Pequeno
 Ponto
 Peixe
 Inseto
-Traço
+Traco
 丸
 Redondo
 Quadrado
@@ -372,12 +372,12 @@ Nove
 Luz
 Sompra
 Origem
-Pé
+Pe
 角
 Angulo
 Arroizal
 Quadrado
-Círculo
+CIrculo
 計
 Medir 
 Contar
@@ -401,8 +401,8 @@ Arco
 高
 Alto
 Baixo
-Difícil
-Fácil
+DifIcil
+Facil
 同
 Igual
 Diferente
@@ -411,38 +411,38 @@ Baixo
 親
 Pais
 Pai
-Mãe
+Mae
 Parente
 母
-Mãe
+Mae
 Pai
-Irmã mais velha
-Irmão mais velho
+Irma mais velha
+Irmao mais velho
 父
 Pai
-Mãe
-Irmão mais velho
-Irmã mais velha
+Mae
+Irmao mais velho
+Irma mais velha
 姉
-Irmã mais velha
-Irmã mais nova
-Irmão mais velho
-Irmão mais novo
+Irma mais velha
+Irma mais nova
+Irmao mais velho
+Irmao mais novo
 兄
-Irmão mais velho
-Irmão mais novo
-Irmã mais nova
-Irmã mais velha
+Irmao mais velho
+Irmao mais novo
+Irma mais nova
+Irma mais velha
 弟
-Irmão mais novo
-Irmão mais velho
-Irmã mais velha
-Irmã mais nova
+Irmao mais novo
+Irmao mais velho
+Irma mais velha
+Irma mais nova
 妹
-Irmã mais nova
-Irmã mais velha
-Irmão mais novo
-Irmão mais velho
+Irma mais nova
+Irma mais velha
+Irmao mais novo
+Irmao mais velho
 自
 Eu mesmo
 O outro
@@ -459,28 +459,28 @@ Descansar
 Pessoa
 Livro
 毛
-Pêlo
+Pelo
 Cabelo
-Mão
+Mao
 Anzol
 頭
-Cabeça
+Cabeca
 Rosto
-Feijão
+Feijao
 Arroz
 顔
 Rosto
-Cabeça
+Cabeca
 Concha
 Comprar
 首
-Pescoço
-Cabeça
+Pescoco
+Cabeca
 Rosto
 Olho
 心
-Coração
-Água
+Coracao
+agua
 Fogo
 Nariz
 時
@@ -516,27 +516,27 @@ Tempo
 週
 Semana
 Dia
-Mês
+Mes
 Ano
 春
 Primavera
-Verão
+Verao
 Outono
 Inverno
 夏
-Verão
+Verao
 Primavera
 Outono
 Inverno
 秋
 Outono
-Verão
+Verao
 Primavera
 Outono
 冬
 Inverno
 Outono
-Verão
+Verao
 Primavera
 今
 Agora
@@ -551,11 +551,11 @@ Errado
 古
 Velho
 Novo
-Fácil
-Difícil
+Facil
+DifIcil
 間
 Entre
-Portão
+Portao
 Escutar
 Abrir
 北
@@ -579,55 +579,55 @@ Leste
 Sul
 Norte
 遠
-Rápido
+Rapido
 Lento
 Cedo
 Tarde
 近
 Perto
 Longe
-Rápido
+Rapido
 Cedo
 前
 Frente
-Atrás
+Atras
 Dentro
 Fora
 後
-Atrás
+Atras
 Frente
 Dentro
 Fora
 内
 Dentro
-Atrás
+Atras
 Frente
 Dentro
 外
 Fora
 Dentro
-Atrás
+Atras
 Frente
 場
 Local
 Dentro
 Terra
-País
+PaIs
 地
 Terra
 Local
 Dentro
-País
+PaIs
 国
-País
+PaIs
 Jardim
 Rei
 Dentro
 園
 Jardim
-País
+PaIs
 Dentro
-Rápido
+Rapido
 谷
 Vale
 Combinar
@@ -641,13 +641,13 @@ Dentro
 市
 Cidade
 Vila
-País
+Pais
 Campo
 風
 Vento
 Inseto
 Vapor
-Água
+agua
 雪
 Neve
 Chuva
@@ -662,7 +662,7 @@ Neve
 Lago
 Rio
 Terra
-Água
+agua
 海
 Mar
 Lago 
@@ -695,317 +695,27 @@ Janela
 Porta
 寺
 Templo Budista
-Templo Xintoísta
+Templo XintoIsta
 Samurai
 Igreja
 社
-Templo Xintoísta
+Templo XintoIsta
 Templo Budista
 Samurai
 Igreja
 門
-Portão
+Portao
 Escutar
 Abrir
 Entre
 道
 Caminho
-Pescoço
-Portão
+Pescoco
+Portao
 Andar
 話
 Conversar
 Dizer
 Andar
 Correr 
-言
-Dizer
-Conversar
-Andar
-Correr
-答
-Resposta
-Pergunta
-Reunir
-Combinar
-声
-Voz
-Som
-Música
-Canção
-聞
-Escutar
-Portão
-Abrir
-Entre
-語
-Linguagem
-Conversar
-Dizer
-Vender
-読
-Ler
-Conversar
-Comprar
-Linguagem
-書
-Escrever
-Ler
-Comprar
-Anotar 
-記
-Anotar
-Escrever
-Comprar
-Vender
-紙
-Papel
-Desenho
-Fio
-Anotar
-絵
-Desenho
-Papel
-Fio
-Reunir 
-教
-Ensinar
-Aprender
-Pensar
-Calcular
-晴
-Ensolarado 
-Nublado
-Chuvoso
-Fechado
-思
-Pensar
-Correr
-Andar
-Sentir
-知
-Saber
-Pensar
-Sentir
-Comer
-理
-Razão
-Sentimento
-Tristeza 
-Felicidade
-算
-Calculo
-Número
-Bambu
-Flor
-作
-Fazer
-Escutar
-Errar
-Acertar
-元
-Origem
-Final
-Luz
-Sombra
-食
-Comida
-Bebida
-Fumo
-Remédio
-肉
-Carne
-Bebida
-Fumo
-Remédio
-馬
-Cavalo
-Boi
-Porco
-Pássaro
-牛
-Boi
-Cavalo
-Porco
-Pássaro
-魚
-Peixe
-Cavalo
-Pássaro
-Porco
-鳥
-Pássaro
-Boi
-Cavalo
-Peixe
-羽
-Asas
-Pássaro
-Aprender
-Ensinar
-麦
-Trigo
-Arroz
-Feijão
-Soja
-米
-Arroz
-Trigo
-Feijão
-Soja
-茶
-Chá
-Trigo
-Arroz
-Água
-色
-Cor
-Som
-Voz
-Canção
-黄
-Amarelo
-Preto
-Azul
-Vermelho
-黒
-Preto
-Amarelo
-Azul
-Verde
-来
-Vir
-Ir
-Voltar
-Andar
-行
-Ir
-Vir
-Voltar
-Ultrapassar
-帰
-Voltar
-Ir
-Vir
-Andar
-歩
-Andar
-Correr
-Ir
-Vir
-走
-Correr
-Andar
-Ir
-Vir
-止
-Parar
-Montanha
-Ir
-Arvore 
-店
-Loja
-Casa
-Sala
-Janela 
-買
-Comprar
-Concha
-Vender
-Pé
-売
-Vender
-Ler
-Escrever
-Comprar
-午
-Meio dia
-Boi
-Pássaro
-Horas
-汽
-Vapor
-Água
-Energia
-Chuva
-弓
-Arco
-Flecha
-Espada
-Escudo
-会
-Reunir
-Combinar
-Ajudar
-Saber
-船
-Barco
-Carro
-Avião
-Metro
-明
-Claro
-Escuro
-Dia
-Noite
-切
-Cortar
-Espada
-7
-Flecha
-電
-Eletricidade
-Nuvem
-Chuva
-Neve
-毎
-Todos
-Mar
-Janela
-Lago
-合
-Combinar
-Reunir
-Escrever
-Desenhar
-公
-Público
-Privado
-Nariz
-Orelha
-引
-Puxar
-Apertar
-Arco
-Flecha
-歌
-Canção
-Som
-Voz
-Barulho
-刀
-Espada
-Arco
-Flecha
-Cortar
-用
-Usar
-Fazer
-Cortar
-Andar
-何
-O que
-Onde
-Quando
-Quem
-味
-Sabor
-Comida
-Bebida
-Sentimento
-感
-Sentimento
-Razão 
-Sabor
-Tristeza
 
