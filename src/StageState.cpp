@@ -2,7 +2,7 @@
 
 // #include "ActionMenu.h"
 
-StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3"),map(Map::getInstance()) {
+StageState::StageState() : bg("img/cenario/mapanovo2.png"),music("audio/tituloPrincipal.mp3"),map(Map::getInstance()) {
     
     float x,y;
     int id = 0;
@@ -39,9 +39,9 @@ StageState::StageState() : bg("img/mapa.png"),music("audio/tituloPrincipal.mp3")
 
     StateData::itemArray.emplace_back("Sword");
     StateData::itemArray.emplace_back("Shuriken");
-    StateData::itemArray.emplace_back("Trap");
+    //StateData::itemArray.emplace_back("Trap");
     StateData::itemArray.emplace_back("Bow");
-    StateData::itemArray.emplace_back("Helmet");
+    //StateData::itemArray.emplace_back("Helmet");
 
 
 

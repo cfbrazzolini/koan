@@ -25,7 +25,7 @@ private:
 	ActionNode* showingNode;
 	ActionNode* root;
 public:
-	ActionMenu();
+	ActionMenu(float,float);
 	std::vector<std::string> mountPath(std::string);
 	void buildTree();
 	void update(float);

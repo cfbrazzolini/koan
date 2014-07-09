@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char **argv){
 
 
-    Game game("Koan", 800, 600);
+    Game game("Koan", 1200, 600);
 
     game.push(new TileState());
 //    system("pwd");

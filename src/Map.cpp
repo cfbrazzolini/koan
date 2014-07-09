@@ -36,7 +36,7 @@ Map::Map()
             type.erase(0,type.find_last_of("\t")+1);
 
 
-            nodeMap.emplace(id,new Stone((float)pos[0],(float)pos[1],id,&links,type));
+            nodeMap.emplace(id,new Stone((float)pos[0]+200,(float)pos[1],id,&links,type));
             links.clear();
 
         }

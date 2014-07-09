@@ -33,7 +33,7 @@ void TileState::update(float dt){
 }
 
 void TileState::render(){
-    bg.render(0,0);
+    bg.render(200,0);
 
     /*if(show){
     	text.render();

@@ -310,7 +310,7 @@ void question::update(float){
 }
 
 void question::render(){
-	bg.render(0,0);
+	bg.render(200,0);
 
     mestre.render(mestreBox.getX() - Camera::pos.getX(),mestreBox.getY() - Camera::pos.getY());
     balao.render(balaoBox.getX() - Camera::pos.getX(),balaoBox.getY() - Camera::pos.getY());
