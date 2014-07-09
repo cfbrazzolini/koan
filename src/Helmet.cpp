@@ -4,7 +4,7 @@ Helmet::Helmet() : used(false)
 {
 	sp.open("img/armas/capacete/capacete 5.png");
 	sp.setScale(0.15);
-	damage = 5;
+	damage = 0;
 	rechargeable = false;
 
 }

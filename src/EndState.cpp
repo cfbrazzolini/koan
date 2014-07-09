@@ -1,23 +1,13 @@
 #include "EndState.h"
 
-EndState::EndState(StateData stateData) : instruction("font/Call me maybe.ttf",34,Text::TEXT_SOLID,"Press space to try again or ESC to exit",SDL_Color(),0,0),
+EndState::EndState(StateData stateData) : instruction("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"Press space to try again or ESC to exit",SDL_Color(),0,0),
                                             music("audio/derrota.mp3", -1)
 {
 
-	if(stateData.playerVictory == true){
-        bg.open("img/win.jpg");
-        // music.open("audio/vitoria.mp3", -1);
-        
-	}else{
-        bg.open("img/lose.jpg");
-        // music.open("audio/vitoria.mp3", -1);
-     
-	}
 	music.play(-1);
     stop = false;
 
 	instruction.setPos(Game::getInstance().getWindowWidth()/2,Game::getInstance().getWindowHeight()*5/6,true,true);
-
 }
 
 void EndState::update(float dt){
