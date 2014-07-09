@@ -31,6 +31,11 @@ Hud::Hud(float x, float y, int id,GameObject* player) :
 void Hud::update(float dt){
 
     //std::cout << "last hp:" << lastHp << "player hp" << StateData::playerHp[id] << std::endl;
+
+    if(StateData::playerHp[id] <= 0){
+        return;
+    }
+
     for(auto i = 0;i < itemArray->size();i++){
         itemArray->at(i)->setPos(box.getCenter().getX() - 18 +45*i,box.getCenter().getY() + 5);
     }
@@ -59,7 +64,7 @@ void Hud::render(){
 }
 
 bool Hud::isDead(){
-	return false;
+    return StateData::playerHp[id] <= 0;
 }
 
 void Hud::notifyCollision(GameObject& other){

@@ -412,4 +412,7 @@ void Player::hit(int value){
     }
 
     hp -= value;
+    if(hp < 0){
+        hp = 0;
+    }
 }

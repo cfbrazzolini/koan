@@ -80,6 +80,7 @@ void StageState::update(float dt){
         for(i=0;i<StateData::playerHp.size();i++){
             if(StateData::playerHp[i] <= 0){
                 StateData data;
+                hasRequestedDelete = true;
                 data.playerVictory = false;
                 Game::getInstance().push(new EndState(data)); 
             }
