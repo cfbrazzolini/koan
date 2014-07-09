@@ -18,7 +18,7 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     id(id),
     color(color),
     actionMenu(Game::getInstance().getWindowWidth()*id,Game::getInstance().getWindowHeight()),
-    music("audio/fogo.mp3")
+    music("audio/fogo.mp3", -1)
 {
     music.play(1);
     StateData::pause = false;
@@ -65,13 +65,11 @@ void Player::update(float dt){
 
     showActionMenu = false;
 
-    if(StateData::pause == true){
-        music.pause();
-    }
     if(StateData::pause == false){
-        cout << "pq não funfa?" << endl;
         music.resume();
     }
+    else
+        cout << "pause" << endl;
 
     if(StateData::turn == id){
 
@@ -261,7 +259,9 @@ void Player::update(float dt){
                             moved = true;
                             jogouDado = false;
                             playerState = STANDBY;
+                            music.pause();
                             Game::getInstance().push(new question());
+
                              /************ Troca turno  >************/
                         }
 
@@ -287,6 +287,7 @@ void Player::update(float dt){
                     stood = true;
                     jogouDado = false;
                     playerState = STANDBY;
+                    music.pause();
                     Game::getInstance().push(new question());
                      /************ Troca turno  >************/
                 break;

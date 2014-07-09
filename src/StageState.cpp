@@ -2,7 +2,9 @@
 
 // #include "ActionMenu.h"
 
-StageState::StageState() : bg("img/cenario/mapanovo2.png"),music("audio/tituloPrincipal.mp3"),map(Map::getInstance()) {
+StageState::StageState() :  bg("img/cenario/mapanovo2.png"),
+                            music("audio/tituloPrincipal.mp3", -1),
+                            map(Map::getInstance()) {
     
     float x,y;
     int id = 0;

@@ -3,14 +3,18 @@
 #include <ostream>
 using namespace std;
 std::unordered_map<std::string,Mix_Music*>  Music::assetTable;
+std::unordered_map<std::string,Mix_Chunk*>  Music::assetTableChannel;
 
 Music::Music()
 {
 	music = nullptr;
 }
 
-Music::Music(const std::string& file){
-	open(file);
+Music::Music(const std::string& file, int times){
+    if(times != 0)
+    	open(file);
+    else
+        open(file, times);
 }
 
 void Music::play(int times){
@@ -49,7 +53,6 @@ void Music::clear(){
 }
 
 void Music::pause(){
-    Mix_FadingMusic();
     Mix_PauseMusic();
 }
 
@@ -61,4 +64,35 @@ void Music::resume(){
 
 int Music::isPaused(){
     return(Mix_PausedMusic());
+}
+
+void Music::open(const std::string& file, int times){
+    ;
+    if(assetTableChannel.find(file) == assetTableChannel.end()){
+        if((sound=Mix_LoadWAV(file.c_str()))==nullptr){
+            printf("nao foi possivel carregar o channel %s\n", file.c_str());
+            printf("%s\n",SDL_GetError());
+            return;
+        }else{
+            assetTableChannel.emplace(file,sound);
+        }
+
+    }else{
+        sound = assetTableChannel[file];
+    }
+}
+
+void Music::playChannel(int times){
+    channel = Mix_PlayChannel(1,sound,times);
+}
+
+void Music::stopChannel(){
+    Mix_FadeOutChannel(channel, MUSIC_FADE_OUT_TIME);
+}
+
+void Music::clearChannel(){    
+    for ( auto it = assetTableChannel.begin(); it!= assetTableChannel.end(); ++it ){
+       Mix_FreeChunk(it->second);
+    }
+    assetTableChannel.clear();
 }

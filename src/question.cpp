@@ -16,16 +16,16 @@ question::question() :  bg("img/perguntas/mapaembacado.png"),
 						errada1("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
 						errada2("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
 						errada3("font/07LogoTypeGothic7.ttf",34,Text::TEXT_SOLID,"oi",SDL_Color(),0,0),
-						escolha_opcao("audio/escolha_opcao.ogg"),
-						resposta_certa("audio/resposta_certa.ogg"),
-						resposta_errada("audio/resposta_errada.ogg")
+						escolha_opcao("audio/escolha_opcao.ogg", 0),
+						resposta_certa("audio/resposta_certa.ogg", 0),
+						resposta_errada("audio/resposta_errada.ogg", 0)
 {
 	StateData::correctAnswer = false;
 	StateData::itemRandom = -1;
 	StateData::pause = true;
 
 	
-	escolha_opcao.play(1);
+	escolha_opcao.playChannel(1);
 
 	mestre.setScale(0.19);
     mestreBox.setX(Game::getInstance().getWindowWidth() - mestre.getWidth() - 660);
@@ -416,50 +416,50 @@ void question::input(){
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && verdeBox.hasPoint(click)){
         if(answer == VERDE){
-        	resposta_certa.play(1);
+        	resposta_certa.playChannel(1);
         	StateData::correctAnswer = true;
         	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_VERDE;
 	        StateData::itemRandom = -1;
-	        resposta_errada.play(1);
+	        resposta_errada.playChannel(1);
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && roxoBox.hasPoint(click)){
         if(answer == ROXO){
-        	resposta_certa.play(1);
+        	resposta_certa.playChannel(1);
         	StateData::correctAnswer = true;
         	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_ROXO;
 	        StateData::itemRandom = -1;
-	        resposta_errada.play(1);
+	        resposta_errada.playChannel(1);
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && vermelhoBox.hasPoint(click)){
         if(answer == VERMELHO){
-        	resposta_certa.play(1);
+        	resposta_certa.playChannel(1);
         	StateData::correctAnswer = true;
         	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_VERMELHO;
 	        StateData::itemRandom = -1;
-	        resposta_errada.play(1);
+	        resposta_errada.playChannel(1);
 	    }
     }
     if(input.mousePress(SDL_BUTTON_LEFT) && amareloBox.hasPoint(click)){
         if(answer == AMARELO){
-        	resposta_certa.play(1);
+        	resposta_certa.playChannel(1);
         	StateData::correctAnswer = true;
         	StateData::itemRandom = (rand() % StateData::itemArray.size());
         }
         else{
 	        answer = E_AMARELO;
 	        StateData::itemRandom = -1;
-	        resposta_errada.play(1);
+	        resposta_errada.playChannel(1);
 	    }
     }
 }

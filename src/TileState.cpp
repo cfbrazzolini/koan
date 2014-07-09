@@ -6,7 +6,7 @@ TileState::TileState() :    bg("img/menu/menu_background.png"),
                             /*show(true),*/
                             iniciarBg("img/menu/iniciar.png"),
                             historicoBg("img/menu/historico.png"),
-                            music("audio/tituloPrincipal.mp3")
+                            music("audio/tituloPrincipal.mp3", -1)
 {
 	//text.setPos(Game::getInstance().getWindowWidth()/2,Game::getInstance().getWindowHeight()*5/6,true,true);
     music.play(1);
