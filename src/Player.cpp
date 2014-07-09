@@ -18,7 +18,13 @@ Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const st
     id(id),
     color(color),
     actionMenu(Game::getInstance().getWindowWidth()*id,Game::getInstance().getWindowHeight()),
-    music("audio/fogo.mp3", -1)
+    music("audio/fogo.mp3", -1),
+    espada("audio/espada.ogg", 0),
+    arco("audio/arco.ogg", 0),
+    shuriken("audio/shuriken.ogg", 0),
+    vitoria("audio/vitoria.mp3", -1),
+    derrota("audio/derrota.mp3", -1),
+    salto("audio/salto.ogg", 0)
 {
     music.play(1);
     StateData::pause = false;
@@ -306,7 +312,15 @@ void Player::update(float dt){
                             if(itemArray[i]->is("Arma")){
                                 damage = itemArray[i]->getDamage();
                                 range = itemArray[i]->getReach();
-
+                                if(itemArray[i]->is("Bow")){
+                                    arco.playChannel(1);
+                                }
+                                else if(itemArray[i]->is("Sword")){
+                                    espada.playChannel(1);
+                                }
+                                else if(itemArray[i]->is("Shuriken")){
+                                    shuriken.playChannel(1);
+                                }
 
                                 paths = stoneArray[currentPos]->getPaths(range,true);
 

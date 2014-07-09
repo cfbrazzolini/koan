@@ -83,7 +83,7 @@ void Music::open(const std::string& file, int times){
 }
 
 void Music::playChannel(int times){
-    channel = Mix_PlayChannel(1,sound,times);
+    channel = Mix_PlayChannel(1,sound,0);
 }
 
 void Music::stopChannel(){

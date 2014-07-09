@@ -85,6 +85,9 @@ private:
     bool showActionMenu;
 
     Music music;
+    Music espada, arco, shuriken;
+    Music vitoria, derrota;
+    Music salto;
 };
 
 #endif // PLAYER_H
