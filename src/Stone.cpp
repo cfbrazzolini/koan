@@ -117,13 +117,16 @@ void Stone::printPaths(){
     }
 }
 
-std::vector<Path*> Stone::getPaths(int distance){
+std::vector<Path*> Stone::getPaths(int distance,bool all){
 
     int i;
     std::vector<Path*> validPaths;
 
     for(i=0;i<pathVector.size();i++){
-        if(pathVector[i]->getDistance() == distance){
+        if(!all && pathVector[i]->getDistance() == distance){
+            validPaths.emplace_back(pathVector[i]);
+        }
+        else if(all && pathVector[i]->getDistance() <= distance){
             validPaths.emplace_back(pathVector[i]);
         }
     }

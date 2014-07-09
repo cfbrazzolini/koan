@@ -51,8 +51,10 @@ public:
     bool is(const std::string&);
     int getId();
     int getHp();
-    std::vector<std::unique_ptr<Item>>* getItens();
+    void decHp(int value){hp-=value;}
+    std::vector<Item*>* getItens();
     std::string& getColor();
+    void setPlayerArray(std::vector<Player*>*);
 private:
 	enum PlayerState {STANDBY,MOVING,ATTACKING,STAND};
 	Sprite* sp;
@@ -65,7 +67,8 @@ private:
 	std::queue<TARGET_T> taskQueue;
 	std::vector<int> validStones;
 	std::unordered_map<int,Stone*> stoneArray;
-	std::vector<std::unique_ptr<Item>> itemArray;
+    std::vector<Item*> itemArray;
+    std::vector<Player*>* playerArray;
 	SDL_RendererFlip flip;
 	PlayerState playerState;
 	bool moved;

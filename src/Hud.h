@@ -21,7 +21,7 @@ public:
 	bool is(const std::string&);
 private:
 	GameObject* player;
-	std::vector<std::unique_ptr<Item>>* itemArray;
+    std::vector<Item*>* itemArray;
 	Sprite sp;
 	Sprite hpSp;
 	int id;

@@ -11,6 +11,7 @@ public:
     Bow();
     void update(float);
     void render();
+    void render(float,float);
     bool isDead();
     void notifyCollision(GameObject&);
     bool is(const std::string&);

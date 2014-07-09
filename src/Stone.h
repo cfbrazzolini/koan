@@ -31,7 +31,7 @@ public:
     bool isTrapped();
     void setTrap(Trap*);
     void activateTrap();
-    std::vector<Path*> getPaths(int);
+    std::vector<Path*> getPaths(int,bool=false);
 private:
     Sprite* sp;
 	Sprite spNormal;

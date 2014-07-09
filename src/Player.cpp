@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const std::string& color) : 
+Player::Player(int id,int pos,std::unordered_map<int,Stone*> stoneArray,const std::string& color) :
     spFrente("img/movimento/"+ color +"Frente.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
     spDireita("img/movimento/"+ color +"Direita.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
     spEsquerda("img/movimento/"+ color +"Esquerda.png",PLAYER_FRAME_COUNT,PLAYER_FRAME_TIME),
@@ -50,11 +50,13 @@ void Player::update(float dt){
     int distance;
     int targetId = -1;
     int action;
-    bool direction,done=false,alignment=false;
+    bool direction,done=false,alignment=false,used=false;
     TARGET_T target;
     std::vector<Path*> paths;
     std::string pathVector,str;
     std::size_t found,last_found;
+
+    int damage,range;
 
     showActionMenu = false;
 
@@ -285,11 +287,41 @@ void Player::update(float dt){
                 if(input.mousePress(SDL_BUTTON_LEFT)){
                     click.setX((float)input.getMouseX() + Camera::pos.getX());
                     click.setY((float)input.getMouseY() + Camera::pos.getY());
-                    if(box.hasPoint(click)){
+
+                    for(i = 0;i<itemArray.size();i++){
+                       if(itemArray[i]->box.hasPoint(click)){
+                            if(itemArray[i]->is("Arma")){
+                                damage = itemArray[i]->getDamage();
+                                range = itemArray[i]->getReach();
+
+
+                                paths = stoneArray[currentPos]->getPaths(range,true);
+
+                                for(auto j=0;j<paths.size();j++){
+                                     if(paths[j]->getTarget() == playerArray->at((id+1)%2)->currentPos){
+                                        
+                                        playerArray->at((id+1)%2)->decHp(damage);
+                                        itemArray[i]->use();
+                                        used = true;
+                                        attacked = true;
+                                        playerState = STANDBY;
+                                        break;
+                                     }
+                                }
+                                if(used){
+                                    break;
+                                }
+                            }
+
+                            playerState = STANDBY;  
+                       }
+                    }
+
+                   /* if(box.hasPoint(click)){
                         StateData::playerHp[(id+1)%2] = StateData::playerHp[(id+1)%2]--;
                         attacked = true;
                         playerState = STANDBY;
-                    }
+                    }*/
                 }
                 break;
         }
@@ -302,12 +334,11 @@ void Player::update(float dt){
     }
 
     for(i=0;i<itemArray.size();i++){
-            if(itemArray[i]->isDead()){
-                itemArray.erase(itemArray.begin()+i);
-            }
+        if(itemArray[i]->isDead()){
+            itemArray.erase(itemArray.begin()+i);
         }
-
-   
+    }
+    StateData::playerHp[id] = hp;
 }
 
 void Player::render(){
@@ -339,10 +370,14 @@ int Player::getHp(){
     return hp;
 }
 
-std::vector<std::unique_ptr<Item>>* Player::getItens(){
+std::vector<Item*>* Player::getItens(){
     return &itemArray;
 }
 
 std::string& Player::getColor(){
     return color;
+}
+
+void Player::setPlayerArray(std::vector<Player*>* playerArray){
+    this->playerArray = playerArray;
 }

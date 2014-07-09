@@ -10,7 +10,7 @@ StageState::StageState() : bg("img/cenario/mapanovo2.png"),music("audio/tituloPr
     std::ifstream file ("map/stoneMap.txt");
     std::string str;
     Dice& dice = Dice::getInstance();
-    Player* player;
+    Player* player1,*player2;
 
 
 
@@ -22,17 +22,22 @@ StageState::StageState() : bg("img/cenario/mapanovo2.png"),music("audio/tituloPr
             objectArray.emplace_back(it->second);
     }
 
-    player = new Player(0,1,stoneArray,"vermelho");
+    player1 = new Player(0,1,stoneArray,"vermelho");
 
-    objectArray.emplace_back(player);
+    objectArray.emplace_back(player1);
+    playerArray.emplace_back(player1);
     StateData::playerHp.emplace_back(20);
-    objectArray.emplace_back(new Hud(0,0,0,player));
+    objectArray.emplace_back(new Hud(0,0,0,player1));
 
-    player = new Player(1,15,stoneArray,"laranja");
+    player2 = new Player(1,4,stoneArray,"laranja");
     
-    objectArray.emplace_back(player);
+    objectArray.emplace_back(player2);
+    playerArray.emplace_back(player2);
     StateData::playerHp.emplace_back(20);
-    objectArray.emplace_back(new Hud(0,0,1,player));
+    objectArray.emplace_back(new Hud(0,0,1,player2));
+
+    player1->setPlayerArray(&playerArray);
+    player2->setPlayerArray(&playerArray);
 
     objectArray.emplace_back(&dice);
     file.close();
@@ -127,4 +132,8 @@ void StageState::render(){
 
     bg.render(0,0);
     renderArray();
+}
+
+Player* StageState::getPlayer(int id){
+    return playerArray[id];
 }

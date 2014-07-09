@@ -11,6 +11,7 @@ public:
     Item();
     virtual void update(float) = 0;
     virtual void render() = 0;
+    void render(float,float);
     virtual bool isDead() = 0;
     virtual void notifyCollision(GameObject&) = 0;
     virtual bool is(const std::string&) = 0;
@@ -19,6 +20,7 @@ public:
     int getDamage();
     bool isRechargeable();
     void setPos(float,float);
+    virtual void use() = 0;
 protected:
 	int uses;
 	int reach;

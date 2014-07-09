@@ -30,12 +30,14 @@ public:
     ~StageState();
     void update(float);
     void render();
+    Player* getPlayer(int);
 private:
 	void input();
 	Sprite bg;
     Map map;
     Music music;
     std::unordered_map<int,Stone*> stoneArray;
+    std::vector<Player*> playerArray;
 
     // Dice dice;
 };
