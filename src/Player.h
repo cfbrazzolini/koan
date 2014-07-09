@@ -46,6 +46,7 @@ class Player : public GameObject
 {
 public:
     Player(int,int,std::unordered_map<int,Stone*>,const std::string&);
+    ~Player();
     void update(float);
     void render();
     bool isDead();

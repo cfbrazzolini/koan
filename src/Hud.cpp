@@ -31,6 +31,7 @@ Hud::Hud(float x, float y, int id,GameObject* player) :
 void Hud::update(float dt){
 
     //std::cout << "last hp:" << lastHp << "player hp" << StateData::playerHp[id] << std::endl;
+
     for(auto i = 0;i < itemArray->size();i++){
         itemArray->at(i)->setPos(box.getCenter().getX() - 18 +45*i,box.getCenter().getY() + 5);
     }
@@ -42,24 +43,29 @@ void Hud::update(float dt){
 		hpSp.setScale(0.15);
 	}
 
-    for(auto i = 0;i < itemArray->size();i++){
+    /*for(auto i = 0;i < itemArray->size();i++){
         itemArray->at(i)->update(dt);
 	}
-
+*/
 }
 
 void Hud::render(){
+
+    if(player == nullptr){
+		return;
+	}	
+
 	sp.render(box.getX() - Camera::pos.getX(),box.getY() - Camera::pos.getY());
     hpSp.render(box.getX() - Camera::pos.getX() + hpSp.getWidth()/3 ,box.getY() - Camera::pos.getY() + hpSp.getHeight()- 2);
 
-	for(auto i = 0;i<itemArray->size();i++){
+	/*for(auto i = 0;i<itemArray->size();i++){
          itemArray->at(i)->render();
-	}
+	}*/
 
 }
 
 bool Hud::isDead(){
-	return false;
+    return StateData::playerHp[id] <= 0;
 }
 
 void Hud::notifyCollision(GameObject& other){
@@ -68,4 +74,9 @@ void Hud::notifyCollision(GameObject& other){
 
 bool Hud::is(const std::string& type){
 	return type == "Hud";
+}
+
+Hud::~Hud(){
+	player = nullptr;
+	itemArray = nullptr;
 }

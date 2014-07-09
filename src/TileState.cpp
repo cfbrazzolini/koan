@@ -1,6 +1,6 @@
 #include "TileState.h"
 
-TileState::TileState() :    bg("img/menu/menu_background.png"),
+TileState::TileState() :    bg("img/menu/menusemopcoes.png"),
                             timer(),
                             /*text("font/Call me maybe.ttf",34,Text::TEXT_SOLID,"Press space to start",SDL_Color(),300,500),*/
                             /*show(true),*/
@@ -35,7 +35,7 @@ void TileState::update(float dt){
 }
 
 void TileState::render(){
-    bg.render(200,0);
+    bg.render(0,0);
 
     /*if(show){
     	text.render();

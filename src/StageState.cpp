@@ -79,16 +79,7 @@ void StageState::update(float dt){
 
         Camera::update(dt);
 
-        for(i=0;i<StateData::playerHp.size();i++){
-            if(StateData::playerHp[i] <= 0){
-                StateData data;
-                data.playerVictory = false;
-                Game::getInstance().push(new EndState(data)); 
-            }
-        }
-
-
-        
+                
         if(input.shouldQuit()){
             hasRequestedQuit = true;
         }
@@ -122,6 +113,19 @@ void StageState::update(float dt){
         for(i=0;i<objectArray.size();i++){
             if(objectArray[i]->isDead()){
                 objectArray.erase(objectArray.begin()+i);
+            }
+        }
+
+        for(i=0;i<playerArray.size();i++){
+            StateData::playerHp[i] = playerArray[i]->getHp();
+        }
+
+        for(i=0;i<StateData::playerHp.size();i++){
+            if(StateData::playerHp[i] <= 0){
+                StateData data;
+                hasRequestedDelete = true;
+                data.playerVictory = false;
+                Game::getInstance().push(new EndState(data)); 
             }
         }
     }
